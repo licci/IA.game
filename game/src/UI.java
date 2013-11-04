@@ -1,17 +1,14 @@
-
-
 import processing.core.*;
 
 public class UI extends PApplet 
 {
 	UIGraph _UIGraph = new UIGraph(this);
-	graph graph = new graph();
-	int tes[] = new int[14];
+	//graph graph = new graph();
 	int color = 0;
 
 	public void setup() 
 	{
-		graph.initialization();
+		//graph.initialization();
 
 		size(800, 800);
 		background(135, 206, 250);

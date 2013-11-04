@@ -1,5 +1,3 @@
-
-
 public class node {
 	
 	//number of node in graph

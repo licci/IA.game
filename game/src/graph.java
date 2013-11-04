@@ -1,9 +1,7 @@
-
-
 public class graph {
 	
 	//array holding our graph
-	node[] map = new node [14];
+	public static node[] map = new node [14];
 	
 	public  void initialization ()
 	{
