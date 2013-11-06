@@ -5,7 +5,10 @@ public class CopyOfUI extends PApplet
 {
 	private static final long serialVersionUID = 1L;
 	
-	int color = 0;
+	int mouseSeparation = 150; //distance from the mouse
+	int separation  = 100; //expected length of connections lines (edges)
+	int repelRadius = 300; //distance from which repulsion works
+	float acceleration = (float) 0.05; //fixed acceleration coefficient
 	
 	int radius = 60; //node radius
 	int N_number = 14; //total number of nodes
@@ -13,11 +16,9 @@ public class CopyOfUI extends PApplet
 
 	public void setup() 
 	{
-		size(800, 800);
-		background(190, 206, 250);
-		//stroke(80, 100, 160);
-		smooth();
-		frameRate(23);
+		size(1000, 800); //screen resolution (x,y)
+		smooth(); //anti-aliasing function
+		frameRate(23); //expected frame rate in FPS
 		
 		Nodes[0]  = new PVector(1 * width / 7,3 * height / 6);
 		Nodes[1]  = new PVector(2 * width / 7,2 * height / 6);
@@ -36,76 +37,52 @@ public class CopyOfUI extends PApplet
 		Nodes[13] = new PVector(6 * width / 7,3 * height / 6);
 	}
 
-	public void draw() 
+	public void draw() //the main drawing loop
 	{
-		int allUnits = 0;
-		int circlesAngle = 0;
-		int squaresAngle = 0;
-		int trianglesAngle = 0;
+		background(190, 206, 250); //fill the screen with given RGB color
+		
+		repelAllNodes(); //push all nodes away from each other
+		makeEdges(); //pull connected nodes to each other and draw edges between them
 
-		drawEdges();
-
-		for (int i = 0; i < N_number; i++)
+		for (int i=0; i<N_number; i++) //loop through the total number of nodes
 		{
-			allUnits = graph.map[i].numberOfSquares()
-					 + graph.map[i].numberOfCircles()
-					 + graph.map[i].numberOfTriangles();
-			
-			if (allUnits != 0) 
-			{
-				circlesAngle = (360 * graph.map[i].numberOfCircles()) / allUnits;
-				squaresAngle = (360 * graph.map[i].numberOfSquares()) / allUnits;
-				trianglesAngle = (360 * graph.map[i].numberOfTriangles()) / allUnits;
-			}
-			
-			int[] angles = { circlesAngle, squaresAngle, trianglesAngle };
-
-			if (graph.map[i].belongs() == 0) // if node does no belong to any player
-			{
-				color = 0;
-				drawElipses(color, i, angles, allUnits);
-			} 
-			else if (graph.map[i].belongs() == 1) // if node belongs to player1
-			{
-				color = 1;
-				drawElipses(color, i, angles, allUnits);
-			} 
-			else if (graph.map[i].belongs() == 2) // if node belongs to player2
-			{
-				color = 2;
-				drawElipses(color, i, angles, allUnits);
-			}
+			drawNode(i); //draw a single node
+			escapeMouse(i); //push a node away from the mouse
+			keepInside(i); //lock a node inside the screen area
 		}
+		
+    	if(Nodes[0].x>70) Nodes[0].x=70; //lock node 0 close to left edge
+    	if(Nodes[13].x<width-70) Nodes[13].x=width-70; //lock node 13 close to right edge
 	}
 	
-	public void drawEdges() 
+	public void makeEdges()
 	{
-		strokeWeight(2); //thickness
-		stroke(80, 100, 160); //color
+		strokeWeight(2); //thickness of edge
+		stroke(80, 100, 160); //edge color
 		
-		line(Nodes[0].x, Nodes[0].y, Nodes[1].x, Nodes[1].y);
-		line(Nodes[0].x, Nodes[0].y, Nodes[2].x, Nodes[2].y);
-		line(Nodes[0].x, Nodes[0].y, Nodes[3].x, Nodes[3].y);
-		line(Nodes[1].x, Nodes[1].y, Nodes[4].x, Nodes[4].y);
-		line(Nodes[1].x, Nodes[1].y, Nodes[5].x, Nodes[5].y);
-		line(Nodes[2].x, Nodes[2].y, Nodes[4].x, Nodes[4].y);
-		line(Nodes[2].x, Nodes[2].y, Nodes[6].x, Nodes[6].y);
-		line(Nodes[3].x, Nodes[3].y, Nodes[5].x, Nodes[5].y);
-		line(Nodes[3].x, Nodes[3].y, Nodes[6].x, Nodes[6].y);
-		line(Nodes[4].x, Nodes[4].y, Nodes[8].x, Nodes[8].y);
-		line(Nodes[5].x, Nodes[5].y, Nodes[7].x, Nodes[7].y);
-		line(Nodes[5].x, Nodes[5].y, Nodes[8].x, Nodes[8].y);
-		line(Nodes[5].x, Nodes[5].y, Nodes[9].x, Nodes[9].y);
-		line(Nodes[6].x, Nodes[6].y, Nodes[8].x, Nodes[8].y);
-		line(Nodes[7].x, Nodes[7].y, Nodes[10].x, Nodes[10].y);
-		line(Nodes[7].x, Nodes[7].y, Nodes[11].x, Nodes[11].y);
-		line(Nodes[8].x, Nodes[8].y, Nodes[10].x, Nodes[10].y);
-		line(Nodes[8].x, Nodes[8].y, Nodes[12].x, Nodes[12].y);
-		line(Nodes[9].x, Nodes[9].y, Nodes[11].x, Nodes[11].y);
-		line(Nodes[9].x, Nodes[9].y, Nodes[12].x, Nodes[12].y);
-		line(Nodes[10].x, Nodes[10].y, Nodes[13].x, Nodes[13].y);
-		line(Nodes[11].x, Nodes[11].y, Nodes[13].x, Nodes[13].y);
-		line(Nodes[12].x, Nodes[12].y, Nodes[13].x, Nodes[13].y);
+    	connect(0,1);
+    	connect(0,2);
+    	connect(0,3);
+    	connect(1,4);
+    	connect(1,5);
+    	connect(2,4);
+    	connect(2,6);
+    	connect(3,5);
+    	connect(3,6);
+    	connect(4,8);
+    	connect(5,7);
+    	connect(5,8);
+    	connect(5,9);
+    	connect(6,8);
+    	connect(7,10);
+    	connect(7,11);
+    	connect(8,10);
+    	connect(8,12);
+    	connect(9,11);
+    	connect(9,12);
+    	connect(10,13);
+    	connect(11,13);
+    	connect(12,13);
 	}
 
 	public void drawElipses(int color, int node, int[] angles, int allUnits) 
@@ -147,6 +124,101 @@ public class CopyOfUI extends PApplet
 		{
 			ellipse(Nodes[node].x, Nodes[node].y, radius, radius);
 		}
-
 	}
+	
+	//draw a single node
+    void drawNode(int i)
+    {
+    	//ellipse(Nodes[i].x,Nodes[i].y,radius,radius); //draw Node number "i"
+    	
+    	int allUnits = 0; //total number of units in a single node
+		int circlesAngle = 0;
+		int squaresAngle = 0;
+		int trianglesAngle = 0;
+    	allUnits = graph.map[i].numberOfSquares()
+				 + graph.map[i].numberOfCircles()
+				 + graph.map[i].numberOfTriangles();
+		
+		if (allUnits > 0)
+		{
+			circlesAngle = (360 * graph.map[i].numberOfCircles()) / allUnits;
+			squaresAngle = (360 * graph.map[i].numberOfSquares()) / allUnits;
+			trianglesAngle = (360 * graph.map[i].numberOfTriangles()) / allUnits;
+		}
+		
+		int[] angles = { circlesAngle, squaresAngle, trianglesAngle };
+
+		drawElipses(graph.map[i].belongs(), i, angles, allUnits);
+    }
+    
+    //push node away from the mouse pointer coordinates
+    void escapeMouse(int i)
+    {
+	    float distance  = dist( Nodes[i].x, Nodes[i].y, mouseX, mouseY ); //calculate distance between Node and mouse
+	    if(distance < mouseSeparation) //if current distance is lower than required
+	    {
+	    	float angle     = atan2( Nodes[i].y - mouseY, Nodes[i].x - mouseX); //calculate angle between Node and mouse
+	    	float move	= mouseSeparation - distance ; //calculate difference between expected and current distances
+	    	Nodes[i].x += move * cos(angle) * acceleration ;
+	    	Nodes[i].y += move * sin(angle) * acceleration ;	
+	    }
+    }
+    
+    //lock node position inside the visible area
+    void keepInside(int i)
+    {
+    	if(Nodes[i].x<radius/2) Nodes[i].x=radius/2;
+    	if(Nodes[i].y<radius/2) Nodes[i].y=radius/2;
+    	if(Nodes[i].x>width-radius/2) Nodes[i].x=width-radius/2;
+    	if(Nodes[i].y>height-radius/2) Nodes[i].y=height-radius/2;
+    }
+    
+    //repel all nodes from each other (skipping duplicates or apply this to a single node)
+    void repelAllNodes()
+    {
+		for(int i=0; i<N_number; i++)
+    	{
+    		 for(int j=i+1; j<N_number;j++)
+    		 {
+    			 repel(Nodes[i],Nodes[j],repelRadius); //call repel function for a node
+    		 }
+    	}
+    }
+	
+    //applying repulsion forces to a pair of nodes (works if current distance is lower than expected)
+    void repel(PVector vector1, PVector vector2, float expectedDistance)
+    {
+	    float distance  = dist( vector2.x, vector2.y, vector1.x, vector1.y ); //calculate distance between Nodes
+	    if(distance < expectedDistance) //if current distance is lower than required
+	    {
+	    	float angle = atan2( vector2.y - vector1.y, vector2.x - vector1.x); //calculate angle between Nodes
+	    	float move	= expectedDistance - distance ; //calculate difference between expected and current distances
+	    	vector2.x += 0.5 * move * cos(angle) * acceleration ;
+	    	vector2.y += 0.5 * move * sin(angle) * acceleration ;
+	    	vector1.x -= 0.5 * move * cos(angle) * acceleration ;
+	    	vector1.y -= 0.5 * move * sin(angle) * acceleration ;
+	    }
+    }
+    
+    //applying forces to a pair of nodes (works when current distance is different than expected)
+    void keepDistanceElastic(PVector vector1, PVector vector2, float expectedDistance)
+    {
+	    float distance  = dist( vector2.x, vector2.y, vector1.x, vector1.y ); //calculate distance between Nodes
+	    if(distance != expectedDistance) //if current distance is different from expected
+	    {
+	    	float angle = atan2( vector2.y - vector1.y, vector2.x - vector1.x); //calculate angle between Nodes
+	    	float move	= expectedDistance - distance ; //calculate difference between expected and current distances
+	    	vector2.x += 0.5 * move * cos(angle) * acceleration ;
+	    	vector2.y += 0.5 * move * sin(angle) * acceleration ;
+	    	vector1.x -= 0.5 * move * cos(angle) * acceleration ;
+	    	vector1.y -= 0.5 * move * sin(angle) * acceleration ;
+	    }
+    }
+    
+    //create a connection
+    void connect(int First, int Second)
+    {
+    	line(Nodes[First].x,Nodes[First].y,Nodes[Second].x,Nodes[Second].y); //draw lines to show the connection
+    	keepDistanceElastic(Nodes[First],Nodes[Second],separation); //attraction forces between connected nodes
+    }
 }
