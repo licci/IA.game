@@ -6,7 +6,7 @@ public class main {
 		
 		graph.initialization();
 		
-		PApplet.main(new String[] { "--present", "CopyOfUI" });
+		PApplet.main(new String[] { "--present", "NewGUI" });
 
 		try {
 		    Thread.sleep(2000);

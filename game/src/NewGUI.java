@@ -1,7 +1,6 @@
 import processing.core.*;
 
-
-public class CopyOfUI extends PApplet
+public class NewGUI extends PApplet
 {
 	private static final long serialVersionUID = 1L;
 	
