@@ -2,6 +2,7 @@ import processing.core.PApplet;
 
 public class main {
 	public static graph graph = new graph();
+	public static agentActions action = new agentActions();
 	public static void main(String[] args) {
 		
 		graph.initialization();
@@ -15,8 +16,7 @@ public class main {
 		}
 		
 		//step 1
-		graph.map[1].setNumberOfTriangles(50);
-		graph.map[1].setOwner(1);
+		action.attack(1,0,1,10,10,10);
 		
 		try {
 		    Thread.sleep(2000);
@@ -25,9 +25,7 @@ public class main {
 		}
 		
 		//step 2
-		graph.map[12].setNumberOfTriangles(20);
-		graph.map[12].setNumberOfCircles(30);
-		graph.map[12].setOwner(2);
+		action.attack(2, 13, 12, 10, 10, 10);
 		
 		try {
 		    Thread.sleep(2000);
@@ -36,9 +34,7 @@ public class main {
 		}
 		
 		//step 3
-		graph.map[5].setNumberOfSquares(2);
-		graph.map[5].setOwner(1);
-		
+		action.move(1,1,0,0,10,0);
 		
 		try {
 		    Thread.sleep(2000);
@@ -47,9 +43,17 @@ public class main {
 		}
 		
 		//step 4
-		graph.map[10].setNumberOfSquares(25);
-		graph.map[10].setNumberOfCircles(8);
-		graph.map[10].setOwner(2);
+		action.attack(2,12,8,0,0,10);
+		
+		try {
+		    Thread.sleep(2000);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+		
+		//step 5
+		action.attack(1, 1, 4, 10, 0, 0);
+
 	}
 
 }

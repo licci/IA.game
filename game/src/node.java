@@ -26,14 +26,12 @@ public class node {
 	int special;
 	
 	//constructors
-	public node () 
-	{
+	public node () {
 		System.out.println("You seem to have called a default constructor - you sure what you are doing?");
 		System.out.println("By the way no node was created!");
 	}
 	
-	public node (int id, int player, int squ, int cir, int tra, int type, int speed, int a,int b, int c, int d,int e, int spec)
-	{
+	public node (int id, int player, int squ, int cir, int tra, int type, int speed, int a,int b, int c, int d,int e, int spec){
 		identificationNumber = id;
 		//number of player node belongs to (0 - neutral)
 		belongsTo = player;
@@ -64,63 +62,57 @@ public class node {
 		System.out.println("Node " +id+ " was succesfully created!");
 	}
 	//methods for getting data about node
-	public int get_id()
-	{
+	public int get_id(){
 		return identificationNumber;
 	}
-	public int belongs()
-	{
+	public int belongs(){
 		return belongsTo;
 	}
 	
-	public int numberOfSquares()
-	{
+	public int numberOfSquares(){
 		return squares;
 	}
-	public int numberOfCircles()
-	{
+	public int numberOfCircles(){
 		return circles;
 	}
-	public int numberOfTriangles()
-	{
+	public int numberOfTriangles(){
 		return triangles;
 	}
 	
-	public int [] getAdjacentNodes()
-	{
+	public int [] getAdjacentNodes(){
 		return adjacentNodes;
 	}
-	public int[] getAvailableNodes()
-	{
+	public int[] getAvailableNodes(){
 		return availableAdjacentNodes;
 	}
 	
+	public int getSpecial(){
+		return special;
+	}
+	
 	//methods for setting data for node
-	public void set_id(int id)
-	{
+	public void set_id(int id){
 		identificationNumber = id;
 	}
-	public void setOwner(int owner)
-	{
+	
+	public void setOwner(int owner){
 		belongsTo = owner;
 	}
 	
-	public void setNumberOfSquares(int value)
-	{
+	public void setNumberOfSquares(int value){
 		squares = value;
 	}
-	public void setNumberOfCircles(int value)
-	{
+	
+	public void setNumberOfCircles(int value){
 		circles= value;
 	}
-	public void setNumberOfTriangles(int value)
-	{
+	
+	public void setNumberOfTriangles(int value){
 		triangles = value;
 	}
 	
 	//this one is here just in case - it probably wont be used - adjacent nodes should not change during simulation
-	public void setAdjacentNodes(int a,int b, int c, int d,int e)
-	{
+	public void setAdjacentNodes(int a,int b, int c, int d,int e){
 		adjacentNodes [0]= a;
 		adjacentNodes [1]= b;
 		adjacentNodes [2]= c;
@@ -128,8 +120,7 @@ public class node {
 		adjacentNodes [4]= e;
 	}
 	//in case paths between nodes can be destroyed/repaired
-	public void setAvailableNodes(int a,int b, int c, int d,int e)
-	{
+	public void setAvailableNodes(int a,int b, int c, int d,int e){
 		availableAdjacentNodes [0]= a;
 		availableAdjacentNodes [1]= b;
 		availableAdjacentNodes [2]= c;
@@ -137,8 +128,7 @@ public class node {
 		availableAdjacentNodes [4]= e;
 	}
 	
-	public void changeRoadState(int nodeId, boolean state)
-	{
+	public void changeRoadState(int nodeId, boolean state){
 		for(int i = 0; i < 5; i++)
 		{
 			//check if given node is adjacent to this node
