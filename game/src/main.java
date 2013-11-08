@@ -14,7 +14,6 @@ public class main {
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
-		//gffyhf
 		
 		//step 1
 		action.attack(1,0,1,10,10,10);
