@@ -54,7 +54,14 @@ public class node {
 		
 		//upon creation all adjacent nodes are available
 		//USE AVAILABLE NODES FOR PATHFIDING!
-		availableAdjacentNodes = adjacentNodes;
+		/*
+		availableAdjacentNodes [0]= a;
+		availableAdjacentNodes [1]= b;
+		availableAdjacentNodes [2]= c;
+		availableAdjacentNodes [3]= d;
+		availableAdjacentNodes [4]= e;
+		*/
+		availableAdjacentNodes = adjacentNodes.clone();
 
 		
 		//possible special abilities of a node
@@ -148,6 +155,7 @@ public class node {
 				}
 		}
 	}
+
 	
 	public boolean isNodeAvailable(int nodeId){
 		for(int i = 0; i < 5; i++)
