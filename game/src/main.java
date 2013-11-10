@@ -1,6 +1,7 @@
 import processing.core.PApplet;
 
 public class main {
+	public static gameState game = new gameState();
 	public static graph graph = new graph();
 	public static agentActions action = new agentActions();
 	public static void main(String[] args) {
