@@ -4,7 +4,7 @@ public class NewGUI extends PApplet
 {
 	private static final long serialVersionUID = 1L;
 	
-	int mouseSeparation = 150; //distance from the mouse
+	int mouseSeparation = 200; //distance from the mouse
 	int separation  = 100; //expected length of connections lines (edges)
 	int repelRadius = 300; //distance from which repulsion works
 	float acceleration = (float) 0.05; //fixed acceleration coefficient
@@ -18,6 +18,12 @@ public class NewGUI extends PApplet
 		size(1000, 800); //screen resolution (x,y)
 		smooth(); //anti-aliasing function
 		frameRate(23); //expected frame rate in FPS
+		
+		try {
+		    Thread.sleep(100);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 		
 		Nodes[0]  = new PVector(1 * width / 7,3 * height / 6);
 		Nodes[1]  = new PVector(2 * width / 7,2 * height / 6);
@@ -52,6 +58,17 @@ public class NewGUI extends PApplet
 		
     	if(Nodes[0].x>70) Nodes[0].x=70; //lock node 0 close to left edge
     	if(Nodes[13].x<width-70) Nodes[13].x=width-70; //lock node 13 close to right edge
+    	
+    	fill(130,140,149); //gray
+    	text("Circles",width/2-40,30);
+		fill(120,85,70); //beige
+		text("Squares",width/2-40,60);
+		fill(10,140,160); //blue
+		text("Triangles",width/2-40,90);
+		fill(255,0,0);
+		text("RED",40,60);
+		fill(0,0,255);
+		text("BLUE",width-100,60);
 	}
 	
 	public void makeEdges()
@@ -85,8 +102,6 @@ public class NewGUI extends PApplet
 
 	public void drawElipses(int color, int node, int[] angles, int allUnits) 
 	{
-		float lastAngle = 0;
-
 		switch (color) 
 		{
 		case 0:
@@ -107,16 +122,18 @@ public class NewGUI extends PApplet
 
 		if (allUnits != 0) 
 		{
-			for (int i = 0; i < angles.length; i++) 
-			{
-				float gray = map(i, 0, angles.length, 0, 255);
-				fill(gray);
-				arc(Nodes[node].x, Nodes[node].y, radius, radius, lastAngle, lastAngle + radians(angles[i]));
-				textSize(30);
-				fill(255, 255, 255);
-				text(node,Nodes[node].x+radius/2, Nodes[node].y+radius/2);
-				lastAngle += radians(angles[i]);
-			}
+			float lastAngle = 0;
+			
+			fill(130,140,149); //gray
+			arc(Nodes[node].x, Nodes[node].y, radius, radius, lastAngle, lastAngle + radians(angles[0]));
+			lastAngle += radians(angles[0]);
+		
+			fill(120,85,70); //beige
+			arc(Nodes[node].x, Nodes[node].y, radius, radius, lastAngle, lastAngle + radians(angles[1]));
+			lastAngle += radians(angles[1]);
+		
+			fill(10,140,160); //blue
+			arc(Nodes[node].x, Nodes[node].y, radius, radius, lastAngle, (float)(2*Math.PI));
 		} 
 		else 
 		{
@@ -146,6 +163,13 @@ public class NewGUI extends PApplet
 		
 		int[] angles = { circlesAngle, squaresAngle, trianglesAngle };
 
+		textSize(25);
+		fill(120,85,70); //beige
+		text(graph.map[i].numberOfSquares()  ,Nodes[i].x+radius/2, Nodes[i].y+radius/2);
+		fill(130,140,149); //gray
+		text(graph.map[i].numberOfCircles()  ,Nodes[i].x+radius/2, Nodes[i].y+radius);
+		fill(10,140,160); //blue
+		text(graph.map[i].numberOfTriangles(),Nodes[i].x+radius/2, Nodes[i].y+(float)(radius*1.5));
 		drawElipses(graph.map[i].belongs(), i, angles, allUnits);
     }
     
