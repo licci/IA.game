@@ -149,7 +149,7 @@ public class node {
 			//check if given node is adjacent to this node
 			if (adjacentNodes[i] == nodeId)
 				{
-					//if given node id is adjacent to this node return true
+					//if given node id is available to this node return true
 					if (availableAdjacentNodes[i] == nodeId){
 						return true;
 					}

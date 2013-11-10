@@ -17,9 +17,10 @@ public class main {
 		}
 		
 		//step 1
-		action.attack(1,0,1,10,10,10);
 		graph.map[0].changeRoadState(2, false);
 		graph.map[5].changeRoadState(7, false);
+		action.attack(1,0,1,10,10,10);
+
 		
 		try {
 		    Thread.sleep(2000);
@@ -28,9 +29,10 @@ public class main {
 		}
 		
 		//step 2
-		action.attack(2, 13, 12, 10, 10, 10);
 		graph.map[0].changeRoadState(2, true);
 		graph.map[5].changeRoadState(7, true);
+		action.attack(2, 13, 12, 10, 10, 10);
+
 		
 		try {
 		    Thread.sleep(2000);
