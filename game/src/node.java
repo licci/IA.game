@@ -90,6 +90,8 @@ public class node {
 		return special;
 	}
 	
+
+	
 	//methods for setting data for node
 	public void set_id(int id){
 		identificationNumber = id;
@@ -139,5 +141,20 @@ public class node {
 					else availableAdjacentNodes[i] = -1; //destroy connection to given node
 				}
 		}
+	}
+	
+	public boolean isNodeAvailable(int nodeId){
+		for(int i = 0; i < 5; i++)
+		{
+			//check if given node is adjacent to this node
+			if (adjacentNodes[i] == nodeId)
+				{
+					//if given node id is adjacent to this node return true
+					if (availableAdjacentNodes[i] == nodeId){
+						return true;
+					}
+				}
+		}
+		return false;
 	}
 }

@@ -17,6 +17,8 @@ public class main {
 		
 		//step 1
 		action.attack(1,0,1,10,10,10);
+		graph.map[0].changeRoadState(2, false);
+		graph.map[5].changeRoadState(7, false);
 		
 		try {
 		    Thread.sleep(2000);
@@ -26,6 +28,8 @@ public class main {
 		
 		//step 2
 		action.attack(2, 13, 12, 10, 10, 10);
+		graph.map[0].changeRoadState(2, true);
+		graph.map[5].changeRoadState(7, true);
 		
 		try {
 		    Thread.sleep(2000);
@@ -36,6 +40,7 @@ public class main {
 		//step 3
 		action.move(1,1,0,0,10,0);
 		
+		
 		try {
 		    Thread.sleep(2000);
 		} catch(InterruptedException ex) {
@@ -44,6 +49,7 @@ public class main {
 		
 		//step 4
 		action.attack(2,12,8,0,0,10);
+		
 		
 		try {
 		    Thread.sleep(2000);
