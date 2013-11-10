@@ -137,8 +137,14 @@ public class node {
 			if (adjacentNodes[i] == nodeId)
 				{
 					//if given node id is adjacent to this node change connection according to the rule
-					if (state == true) availableAdjacentNodes[i] = nodeId; //create connection to given node
-					else availableAdjacentNodes[i] = -1; //destroy connection to given node
+					if (state == true) {
+						availableAdjacentNodes[i] = nodeId; //create connection to given node
+						System.out.println("Road OK!");
+					}
+					else {
+						availableAdjacentNodes[i] = -1; //destroy connection to given node
+						System.out.println("Road BROKEN!");
+					}
 				}
 		}
 	}
