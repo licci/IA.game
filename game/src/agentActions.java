@@ -18,7 +18,7 @@ public class agentActions {
 	 * 20 - 0.5*30/1 = 20 - 15 = 5 
 	 * Defender won and still has 5 triangles inside the node
 	 */
-	public int move(int playerId, int startNode, int targetNode, int movingSquares, int movingCircles, int movingTriangles){
+	public boolean move(int playerId, int startNode, int targetNode, int movingSquares, int movingCircles, int movingTriangles){
 		
 		boolean movePossible = false;
 
@@ -49,14 +49,16 @@ public class agentActions {
 			graph.map[targetNode].setNumberOfCircles(graph.map[targetNode].numberOfCircles()+movingCircles);
 			graph.map[targetNode].setNumberOfTriangles(graph.map[targetNode].numberOfTriangles()+movingTriangles);
 		}
+		else return false; //returns false if move impossible
+		
 		System.out.println("Player "+playerId+" moved units from "+startNode+" to "+targetNode+"!\n Units remaining in "+startNode+":");
 		System.out.println("Squares: "+graph.map[startNode].numberOfSquares()+"\n Circles: "+graph.map[startNode].numberOfCircles()+"\n Triangles: "+graph.map[startNode].numberOfTriangles());
 		System.out.println("Unit count in "+targetNode+": ");
 		System.out.println("Squares: "+graph.map[targetNode].numberOfSquares()+"\n Circles: "+graph.map[targetNode].numberOfCircles()+"\n Triangles: "+graph.map[targetNode].numberOfTriangles());
 			
-		return 1;
+		return true; //returns true if move was successful
 	}
-	public int attack(int attackerId, int startNode, int targetNode, int attackingSquares, int attackingCircles, int attackingTriangles){
+	public boolean attack(int attackerId, int startNode, int targetNode, int attackingSquares, int attackingCircles, int attackingTriangles){
 		boolean strikePossible = false;
 
 		//check if startNode belongs to provided user and if targetNode is in range (there is a path from startNode that leads there)
@@ -94,50 +96,9 @@ public class agentActions {
 			I am really sorry for all of code copy-pasting but I think it is easier to understand this way, as well as easier to debug
 			*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
 			//1st stage of fight
-			//squares vs. triangles - inflicting biggest casualties
-			//if there are more squares that weaker enemies all enemies die
-			if(defendingTriangles !=0){
-				if( attackingSquares > (int) (0.5*defendingTriangles*special) ) {
-					attackingSquares -= (int) (0.5*defendingTriangles*special);
-					defendingTriangles = 0;
-				}
-				//otherwise all squares die, inflicting higher casualties upon enemy
-				else {
-					defendingTriangles -= (int) 2*attackingSquares/special;
-					attackingSquares = 0;
-				}
-			}
-			
-			//same reasoning for circles
-			if(defendingSquares != 0){
-				if( attackingCircles > (int) (0.5*defendingSquares*special) ) {
-					attackingCircles -= (int) (0.5*defendingSquares*special);
-					defendingSquares = 0;
-				}
-				else {
-					defendingSquares -= (int) 2*attackingCircles/special;
-					attackingCircles = 0;
-				}
-			}
-			
-			//and triangles
-			if(defendingCircles != 0){
-				if( attackingTriangles > (int) (0.5*defendingCircles*special) ) {
-					attackingTriangles -= (int) (0.5*defendingCircles*special);
-					defendingCircles = 0;
-				}
-				else {
-					defendingCircles -= (int) 2*attackingTriangles/special;
-					attackingTriangles = 0;
-				}
-			}
-			
-			//check if fight has ended
-			if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) return 1;
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			//2nd stage
-			//units remaining from 1st stage fight with units of the same type - inflicting normal casualties 
+			//units fight with units of the same type - inflicting normal casualties 
 				if(defendingSquares != 0){
 					if( attackingSquares > (int) (defendingSquares*special) ) {
 						attackingSquares -= (int) (defendingSquares*special);
@@ -176,7 +137,50 @@ public class agentActions {
 				}
 				
 				//check if fight has ended
-				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) return 1;
+				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) return true;
+			
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				//2nd stage
+				//squares vs. triangles - inflicting biggest casualties
+				//if there are more squares that weaker enemies all enemies die
+				if(defendingTriangles !=0){
+					if( attackingSquares > (int) (0.5*defendingTriangles*special) ) {
+						attackingSquares -= (int) (0.5*defendingTriangles*special);
+						defendingTriangles = 0;
+					}
+					//otherwise all squares die, inflicting higher casualties upon enemy
+					else {
+						defendingTriangles -= (int) 2*attackingSquares/special;
+						attackingSquares = 0;
+					}
+				}
+				
+				//same reasoning for circles
+				if(defendingSquares != 0){
+					if( attackingCircles > (int) (0.5*defendingSquares*special) ) {
+						attackingCircles -= (int) (0.5*defendingSquares*special);
+						defendingSquares = 0;
+					}
+					else {
+						defendingSquares -= (int) 2*attackingCircles/special;
+						attackingCircles = 0;
+					}
+				}
+				
+				//and triangles
+				if(defendingCircles != 0){
+					if( attackingTriangles > (int) (0.5*defendingCircles*special) ) {
+						attackingTriangles -= (int) (0.5*defendingCircles*special);
+						defendingCircles = 0;
+					}
+					else {
+						defendingCircles -= (int) 2*attackingTriangles/special;
+						attackingTriangles = 0;
+					}
+				}
+				
+				//check if fight has ended
+				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) return true;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				//3rd stage - last step
 				if(defendingCircles !=0){
@@ -215,13 +219,24 @@ public class agentActions {
 					}
 				}
 			
-		}else System.out.println("Attack impossible - node not in range!");
-		return 0;
+		}
+		else {
+			System.out.println("Attack impossible - node not in range!");
+			return false;
+		}
+		return true;
 	}
 	
 	public boolean battleEnded (int attackerId, int startNode, int targetNode, int attackingSquares, int attackingCircles, int attackingTriangles,int defendingSquares, int defendingCircles, int defendingTriangles){
+		//draw
+		if(defendingSquares == 0 & defendingCircles == 0 & defendingTriangles == 0 & attackingSquares == 0 & attackingCircles == 0 & attackingTriangles ==0) {
+			//node does not change hands
+			//all units are dead so no unit movement
+			System.out.println("Fight in the node: "+targetNode+" was a draw!");
+			return true;
+		}
 		//attacker wins
-		if(defendingSquares == 0 & defendingCircles == 0 & defendingTriangles == 0) {
+		else if(defendingSquares == 0 & defendingCircles == 0 & defendingTriangles == 0) {
 			//node change hands
 			graph.map[targetNode].setOwner(attackerId);
 			//remaining attackers arrive at node
