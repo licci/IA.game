@@ -170,7 +170,10 @@ public class NewGUI extends PApplet
 		text(graph.map[i].numberOfCircles()  ,Nodes[i].x+radius/2, Nodes[i].y+radius);
 		fill(10,140,160); //blue
 		text(graph.map[i].numberOfTriangles(),Nodes[i].x+radius/2, Nodes[i].y+(float)(radius*1.5));
+		
 		drawElipses(graph.map[i].belongs(), i, angles, allUnits);
+		fill(0,0,0); //black
+		text(i,Nodes[i].x-12, Nodes[i].y+5);
     }
     
     //push node away from the mouse pointer coordinates
@@ -242,9 +245,7 @@ public class NewGUI extends PApplet
     {
     	//draw edge if the node is available
 
-    	stroke(80, 100, 160, 255); //edge color
-    	//make edge invisible (background color) if not available
-    	//else stroke(80, 100, 160, 0); //transparent edge color
+    	stroke(80, 100, 160); //edge color
 		if (graph.map[First].isNodeAvailable(Second))
 		{
 	    	line(Nodes[First].x,Nodes[First].y,Nodes[Second].x,Nodes[Second].y); //draw lines to show the connection
