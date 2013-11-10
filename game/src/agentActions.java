@@ -37,6 +37,14 @@ public class agentActions {
 			}
 		}
 		
+		if (graph.map[startNode].numberOfSquares()>= movingSquares & graph.map[startNode].numberOfCircles()>= movingCircles & graph.map[startNode].numberOfTriangles()>= movingTriangles){
+			movePossible = true;
+			System.out.println("Units available!");
+		} else {
+			movePossible = false;
+			System.out.println("Units unavailable!");
+		}
+		
 		if(movePossible){
 			System.out.println("Moving!");
 			//removing moving units from startNode
@@ -75,6 +83,14 @@ public class agentActions {
 					strikePossible = true;
 					System.out.println("Node in range!");
 				}
+			}
+			
+			if (graph.map[startNode].numberOfSquares()>= attackingSquares & graph.map[startNode].numberOfCircles()>= attackingCircles & graph.map[startNode].numberOfTriangles()>= attackingTriangles){
+				strikePossible = true;
+				System.out.println("Units available!");
+			} else {
+				strikePossible = false;
+				System.out.println("Units unavailable!");
 			}
 		
 		if(strikePossible){
