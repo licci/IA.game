@@ -59,7 +59,7 @@ public class node {
 		
 		//possible special abilities of a node
 		special = spec;
-		System.out.println("Node " +id+ " was succesfully created!");
+		//System.out.println("Node " +id+ " was succesfully created!");
 	}
 	//methods for getting data about node
 	public int get_id(){
