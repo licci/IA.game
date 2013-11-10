@@ -25,6 +25,7 @@ public class agentActions {
 		if(playerId == graph.map[startNode].belongsTo & playerId == graph.map[targetNode].belongsTo);
 		else {
 			System.out.println("One of the nodes is not yours Player "+playerId+" - action impossible!");
+			return 1;
 		}
 	
 		for (int i=0; i<5; i++){
@@ -54,7 +55,7 @@ public class agentActions {
 		System.out.println("Unit count in "+targetNode+": ");
 		System.out.println("Squares: "+graph.map[targetNode].numberOfSquares()+"\n Circles: "+graph.map[targetNode].numberOfCircles()+"\n Triangles: "+graph.map[targetNode].numberOfTriangles());
 			
-		return 1;
+		return 0;
 	}
 	public int attack(int attackerId, int startNode, int targetNode, int attackingSquares, int attackingCircles, int attackingTriangles){
 		boolean strikePossible = false;
@@ -63,9 +64,11 @@ public class agentActions {
 		if(attackerId == graph.map[startNode].belongsTo);
 			else {
 				System.out.println("Node is not yours Player "+attackerId+" - action impossible!");
+			return 1;
 			}
 		
-			for (int i=0; i<5; i++){
+			for (int i=0; i<5; i++)
+			{
 				int[] checkStrikePossibility = new int [5];
 				checkStrikePossibility = graph.map[startNode].getAvailableNodes();
 				
@@ -176,7 +179,7 @@ public class agentActions {
 				}
 				
 				//check if fight has ended
-				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) return 1;
+				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) return 0;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				//3rd stage - last step
 				if(defendingCircles !=0){
@@ -214,10 +217,17 @@ public class agentActions {
 						attackingTriangles = 0;
 					}
 				}
+				return 0; 	
+		}else
+		{
 			
-		}else System.out.println("Attack impossible - node not in range!");
-		return 0;
-	}
+			System.out.println("Attack impossible - node not in range!");
+			
+			
+	
+		return 1;
+		}
+		}
 	
 	public boolean battleEnded (int attackerId, int startNode, int targetNode, int attackingSquares, int attackingCircles, int attackingTriangles,int defendingSquares, int defendingCircles, int defendingTriangles){
 		//attacker wins
