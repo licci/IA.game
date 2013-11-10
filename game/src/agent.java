@@ -27,9 +27,9 @@ public class agent {
 	    	
 	    	if (x>0)
 	    	{
-	   int ifSuccessAttack = action.attack(agentId,startNode,x,graph.map[startNode].numberOfSquares(),graph.map[startNode].numberOfCircles(),graph.map[startNode].numberOfTriangles());	
+	   boolean ifSuccessAttack = action.attack(agentId,startNode,x,graph.map[startNode].numberOfSquares(),graph.map[startNode].numberOfCircles(),graph.map[startNode].numberOfTriangles());	
 	    	
-	    	if (ifSuccessAttack == 0)
+	    	if (ifSuccessAttack == true)
 	    	{
 	    		ifPass = true;
 	    		System.out.println("ATTACK SuCC - "+x+" / "+startNode);
@@ -61,9 +61,9 @@ public class agent {
 	    	{
 	    		System.out.println("MOVE DEBUG - "+x+" / "+startNode);
 			
-	    		int ifSuccessMove =   action.move(agentId,startNode,x,graph.map[startNode].numberOfSquares(),graph.map[startNode].numberOfCircles(),graph.map[startNode].numberOfTriangles());	
+	    		boolean ifSuccessMove =   action.move(agentId,startNode,x,graph.map[startNode].numberOfSquares(),graph.map[startNode].numberOfCircles(),graph.map[startNode].numberOfTriangles());	
        
-	    		if (ifSuccessMove == 0)
+	    		if (ifSuccessMove == true)
 	    		{
 	    			IfPass = true;
 	    		    randomAction(x);  
@@ -88,7 +88,7 @@ public class agent {
 	public void randomAction(int startNode)
 	{
 	
-		if (counter > 36) return;
+		if (counter > 70) return;
 		
 		try {
 		    Thread.sleep(2000);

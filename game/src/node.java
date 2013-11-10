@@ -54,12 +54,19 @@ public class node {
 		
 		//upon creation all adjacent nodes are available
 		//USE AVAILABLE NODES FOR PATHFIDING!
-		availableAdjacentNodes = adjacentNodes;
+		/*
+		availableAdjacentNodes [0]= a;
+		availableAdjacentNodes [1]= b;
+		availableAdjacentNodes [2]= c;
+		availableAdjacentNodes [3]= d;
+		availableAdjacentNodes [4]= e;
+		*/
+		availableAdjacentNodes = adjacentNodes.clone();
 
 		
 		//possible special abilities of a node
 		special = spec;
-		System.out.println("Node " +id+ " was succesfully created!");
+		//System.out.println("Node " +id+ " was succesfully created!");
 	}
 	//methods for getting data about node
 	public int get_id(){
@@ -89,6 +96,8 @@ public class node {
 	public int getSpecial(){
 		return special;
 	}
+	
+
 	
 	//methods for setting data for node
 	public void set_id(int id){
@@ -135,9 +144,31 @@ public class node {
 			if (adjacentNodes[i] == nodeId)
 				{
 					//if given node id is adjacent to this node change connection according to the rule
-					if (state == true) availableAdjacentNodes[i] = nodeId; //create connection to given node
-					else availableAdjacentNodes[i] = -1; //destroy connection to given node
+					if (state == true) {
+						availableAdjacentNodes[i] = nodeId; //create connection to given node
+						System.out.println("Road OK!");
+					}
+					else {
+						availableAdjacentNodes[i] = -1; //destroy connection to given node
+						System.out.println("Road BROKEN!");
+					}
 				}
 		}
+	}
+
+	
+	public boolean isNodeAvailable(int nodeId){
+		for(int i = 0; i < 5; i++)
+		{
+			//check if given node is adjacent to this node
+			if (adjacentNodes[i] == nodeId)
+				{
+					//if given node id is available to this node return true
+					if (availableAdjacentNodes[i] == nodeId){
+						return true;
+					}
+				}
+		}
+		return false;
 	}
 }
