@@ -217,12 +217,14 @@ public class NewGUI extends PApplet
     void connect(int First, int Second)
     {
     	boolean pathAvailable = graph.map[First].isNodeAvailable(Second); //checks if connection between Nodes First-Second is available
-    	stroke(80, 100, 160, 255); //edge color
     	
-    	if (!pathAvailable)
+    	//draw edge if the node is available
+    	if (pathAvailable)
     	{
-    		stroke(80, 100, 160, 0); //transparent edge color
+    		stroke(80, 100, 160, 255); //edge color
     	}
+    	//make edge invisible (background color) if not available
+    	else stroke(80, 100, 160, 0); //transparent edge color
     	
     	line(Nodes[First].x,Nodes[First].y,Nodes[Second].x,Nodes[Second].y); //draw lines to show the connection
 	    keepDistanceElastic(Nodes[First],Nodes[Second],separation); //attraction forces between connected nodes
