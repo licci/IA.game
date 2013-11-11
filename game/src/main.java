@@ -29,27 +29,33 @@ public class main {
 		int tossResult = -1;
 		
 		while(!game.getState()) {
+			
+			pause(1000);
+			
 			tossResult = coinToss.nextInt(2);
 			System.out.println(tossResult);
 			
 			if (tossResult == 0)
 			{
 				agent1.randomAction(0);
-				//agent2.randomAction(13);
+				
+				pause(500);
+				
+				agent2.randomAction(13);
 			}
 			else if (tossResult == 1)
 			{	
 				agent2.randomAction(13);
-				//agent1.randomAction(0);
+				
+				pause(500);
+				
+				agent1.randomAction(0);
 			}
-				try {
-				    Thread.sleep(1000);
-				} catch(InterruptedException ex) {
-				    Thread.currentThread().interrupt();
-				}
+
 			game.check();
 		}
 		
+
 		
 		/*
 		action.attack(1,0,1,10,10,10);
@@ -106,5 +112,12 @@ public class main {
 		action.attack(1, 0, 1, 10, 0, 0);
 		*/
 	}
-
+	public static void pause(int time){
+		try {
+		    Thread.sleep(time);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+	}
+	
 }
