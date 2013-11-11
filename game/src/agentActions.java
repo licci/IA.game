@@ -25,6 +25,7 @@ public class agentActions {
 		if(playerId == graph.map[startNode].belongsTo & playerId == graph.map[targetNode].belongsTo);
 		else {
 			//System.out.println("One of the nodes is not yours Player "+playerId+" - action impossible!");
+			return false;
 		}
 	
 		for (int i=0; i<5; i++){
@@ -72,7 +73,7 @@ public class agentActions {
 		//check if startNode belongs to provided user and if targetNode is in range (there is a path from startNode that leads there)
 		if(attackerId == graph.map[startNode].belongsTo);
 			else {
-				System.out.println("Node is not yours Player "+attackerId+" - action impossible!");
+				//System.out.println("Node is not yours Player "+attackerId+" - action impossible!");
 			}
 		
 			for (int i=0; i<5; i++){
@@ -81,20 +82,20 @@ public class agentActions {
 				
 				if (checkStrikePossibility[i] == targetNode) {
 					strikePossible = true;
-					System.out.println("Node in range!");
+					//System.out.println("Node in range!");
 				}
 			}
 			
 			if (graph.map[startNode].numberOfSquares()>= attackingSquares & graph.map[startNode].numberOfCircles()>= attackingCircles & graph.map[startNode].numberOfTriangles()>= attackingTriangles){
 				strikePossible = true;
-				System.out.println("Units available!");
+				//System.out.println("Units available!");
 			} else {
 				strikePossible = false;
-				System.out.println("Units unavailable!");
+				//System.out.println("Units unavailable!");
 			}
 		
 		if(strikePossible){
-			System.out.println("Attacking!");
+			//System.out.println("Attacking!");
 			//removing attacking units from start node (current value - units send to attack)
 			graph.map[startNode].setNumberOfSquares(graph.map[startNode].numberOfSquares()-attackingSquares);
 			graph.map[startNode].setNumberOfCircles(graph.map[startNode].numberOfCircles()-attackingCircles);

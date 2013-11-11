@@ -16,9 +16,9 @@ public class main {
 		PApplet.main(new String[] { "--present", "NewGUI" });
 
 	
-		
-		//agent agent1 = new agent(1);
-		//agent agent2 = new agent(2);
+	
+		agent agent1 = new agent(1);
+		agent agent2 = new agent(2);
 		
 		
 		//I think it is how the game turn might look like
@@ -34,12 +34,12 @@ public class main {
 			
 			if (tossResult == 0)
 			{
-				//agent1.randomAction(0);
+				agent1.randomAction(0);
 				//agent2.randomAction(13);
 			}
 			else if (tossResult == 1)
 			{	
-				//agent2.randomAction(13);
+				agent2.randomAction(13);
 				//agent1.randomAction(0);
 			}
 				try {
