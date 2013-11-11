@@ -14,23 +14,16 @@ public class main {
 
 	
 		
-		agent agent1 = new agent(1);
-		agent agent2 = new agent(2);
+		agent agent1 = new agent();
 		
 
 		
 		for (int i = 0; i < 36; i++) {
-		int	randomNum = 1+(int)(Math.random()*2); 
+	
 		
+	
+			agent1.randomAction();
 		
-		if (randomNum == 1)
-		{
-			agent1.randomAction(0);
-		}
-		else
-		{	
-			agent2.randomAction(13);
-		}
 		}
 		//action.attack(1,0,1,10,10,10);
 		/*	try {
