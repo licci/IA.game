@@ -13,7 +13,7 @@ public class main {
 		PApplet.main(new String[] { "--present", "NewGUI" });
 
 	
-		
+	
 		agent agent1 = new agent();
 		
 

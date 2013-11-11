@@ -21,7 +21,7 @@ public class agent {
 	public void randomAttack(int agentId)
 	{
 		
-		
+
 		List<Integer> availableNodes = new ArrayList<Integer>();
 		
 		for(int x = 0; x < 14; x = x+1) {
@@ -40,23 +40,20 @@ public class agent {
         
         
 		System.out.println("PRE-ATTACK DEBUG - "+agentId+" / "+RandomNode);
-		
 		int availableStart[] = graph.map[RandomNode].getAvailableNodes();
-		boolean ifPass = false;
-	    for(int x : availableStart)
-        
-	    {
+		boolean ifSuccessAttack = false;
+	    for(int x : availableStart){
 	    	
 	    	
 			System.out.println("ATTACK DEBUG - "+x+" / "+RandomNode);
 	    	
 	    	if (x>0)
 	    	{
-	   boolean ifSuccessAttack = action.attack(agentId,RandomNode,x,graph.map[RandomNode].numberOfSquares(),graph.map[RandomNode].numberOfCircles(),graph.map[RandomNode].numberOfTriangles());	
+	   ifSuccessAttack = action.attack(agentId,RandomNode,x,graph.map[RandomNode].numberOfSquares(),graph.map[RandomNode].numberOfCircles(),graph.map[RandomNode].numberOfTriangles());	
 	    	
 	    	if (ifSuccessAttack == true)
 	    	{
-	    		ifPass = true;
+	    	
     			if (agentId == 1) { aid1move = true; aid1LastNode = x; }
     			if (agentId == 2) { aid2move = true;  aid2LastNode = x; }
              }
@@ -67,19 +64,13 @@ public class agent {
     			if (agentId == 2) { aid2move = true; }
     			
     		}
-	    	
-	    	}
-	   
-        
         }
 	    
-	    if (ifPass == false)
-	    {
-	    	
+	    if (ifSuccessAttack == false){
 	    	 randomAction();
-	    	
 	    }
  	}
+	}
 	
 	public void randomMove(int agentId)
 	{
@@ -103,19 +94,18 @@ public class agent {
 		
 		
 		int availableStart[] = graph.map[RandomNode].getAvailableNodes();
-		boolean IfPass = false;
+		boolean ifSuccessMove = false;
 	    for(int x : availableStart)
-        
 	    {
 	    	if (x>0)
 	    	{
 	    		System.out.println("MOVE DEBUG - "+x+" / "+RandomNode);
 			
-	    		boolean ifSuccessMove =   action.move(agentId,RandomNode,x,graph.map[RandomNode].numberOfSquares(),graph.map[RandomNode].numberOfCircles(),graph.map[RandomNode].numberOfTriangles());	
+	    		ifSuccessMove =   action.move(agentId,RandomNode,x,graph.map[RandomNode].numberOfSquares(),graph.map[RandomNode].numberOfCircles(),graph.map[RandomNode].numberOfTriangles());	
        
 	    		if (ifSuccessMove == true)
 	    		{
-	    			IfPass = true;
+	    			
 	    			if (agentId == 1) { aid1move = true; aid1LastNode = x; }
 	    			if (agentId == 2) { aid2move = true;  aid2LastNode = x; }
 	             }
@@ -132,7 +122,7 @@ public class agent {
 	    	
         }
 	    
-	    if (IfPass == false)
+	    if (ifSuccessMove == false)
 	    {
 	    	
 	    	 randomAction();
