@@ -25,7 +25,7 @@ public class main {
 		//broken agents are commented out
 		//all agent actions should be in "if"
 		//game stuff - world update etc. in "while"
-
+		//
 		int tossResult = -1;
 		
 		while(!game.getState()) {
