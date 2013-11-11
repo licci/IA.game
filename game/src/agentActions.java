@@ -24,8 +24,7 @@ public class agentActions {
 
 		if(playerId == graph.map[startNode].belongsTo & playerId == graph.map[targetNode].belongsTo);
 		else {
-			System.out.println("One of the nodes is not yours Player "+playerId+" - action impossible!");
-			return false;
+			//System.out.println("One of the nodes is not yours Player "+playerId+" - action impossible!");
 		}
 	
 		for (int i=0; i<5; i++){
@@ -34,20 +33,20 @@ public class agentActions {
 			
 			if (checkStrikePossibility[i] == targetNode) {
 				movePossible = true;
-				System.out.println("Node in range!");
+				//System.out.println("Node in range!");
 			}
 		}
 		
 		if (graph.map[startNode].numberOfSquares()>= movingSquares & graph.map[startNode].numberOfCircles()>= movingCircles & graph.map[startNode].numberOfTriangles()>= movingTriangles){
 			movePossible = true;
-			System.out.println("Units available!");
+			//System.out.println("Units available!");
 		} else {
 			movePossible = false;
-			System.out.println("Units unavailable!");
+			//System.out.println("Units unavailable!");
 		}
 		
 		if(movePossible){
-			System.out.println("Moving!");
+			//System.out.println("Moving!");
 			//removing moving units from startNode
 			graph.map[startNode].setNumberOfSquares(graph.map[startNode].numberOfSquares()-movingSquares);
 			graph.map[startNode].setNumberOfCircles(graph.map[startNode].numberOfCircles()-movingCircles);
@@ -60,16 +59,12 @@ public class agentActions {
 		}
 		else return false; //returns false if move impossible
 		
-		System.out.println("Player "+playerId+" moved units from "+startNode+" to "+targetNode+"!\n Units remaining in "+startNode+":");
-		System.out.println("Squares: "+graph.map[startNode].numberOfSquares()+"\n Circles: "+graph.map[startNode].numberOfCircles()+"\n Triangles: "+graph.map[startNode].numberOfTriangles());
-		System.out.println("Unit count in "+targetNode+": ");
-		System.out.println("Squares: "+graph.map[targetNode].numberOfSquares()+"\n Circles: "+graph.map[targetNode].numberOfCircles()+"\n Triangles: "+graph.map[targetNode].numberOfTriangles());
+		//System.out.println("Player "+playerId+" moved units from "+startNode+" to "+targetNode+"!\n Units remaining in "+startNode+":");
+		//System.out.println("Squares: "+graph.map[startNode].numberOfSquares()+"\n Circles: "+graph.map[startNode].numberOfCircles()+"\n Triangles: "+graph.map[startNode].numberOfTriangles());
+		//System.out.println("Unit count in "+targetNode+": ");
+		//System.out.println("Squares: "+graph.map[targetNode].numberOfSquares()+"\n Circles: "+graph.map[targetNode].numberOfCircles()+"\n Triangles: "+graph.map[targetNode].numberOfTriangles());
 			
-
-		
-
 		return true; //returns true if move was successful
-
 	}
 	public boolean attack(int attackerId, int startNode, int targetNode, int attackingSquares, int attackingCircles, int attackingTriangles){
 		boolean strikePossible = false;
@@ -78,11 +73,9 @@ public class agentActions {
 		if(attackerId == graph.map[startNode].belongsTo);
 			else {
 				System.out.println("Node is not yours Player "+attackerId+" - action impossible!");
-			return false;
 			}
 		
-			for (int i=0; i<5; i++)
-			{
+			for (int i=0; i<5; i++){
 				int[] checkStrikePossibility = new int [5];
 				checkStrikePossibility = graph.map[startNode].getAvailableNodes();
 				
@@ -160,7 +153,7 @@ public class agentActions {
 				}
 				
 				//check if fight has ended
-		if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) return true;
+				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) return true;
 			
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				//2nd stage
@@ -204,7 +197,6 @@ public class agentActions {
 				
 				//check if fight has ended
 				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) return true;
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				//3rd stage - last step
 				if(defendingCircles !=0){
@@ -242,31 +234,21 @@ public class agentActions {
 						attackingTriangles = 0;
 					}
 				}
-				return true; 	
-		}else
-		{
 			
-
-			System.out.println("Attack impossible - node not in range!");
-			
-			
-	
-		return false;
 		}
-		
-
-		
-	
-
+		else {
+			//System.out.println("Attack impossible - node not in range!");
+			return false;
+		}
+		return true;
 	}
-
 	
 	public boolean battleEnded (int attackerId, int startNode, int targetNode, int attackingSquares, int attackingCircles, int attackingTriangles,int defendingSquares, int defendingCircles, int defendingTriangles){
 		//draw
 		if(defendingSquares == 0 & defendingCircles == 0 & defendingTriangles == 0 & attackingSquares == 0 & attackingCircles == 0 & attackingTriangles ==0) {
 			//node does not change hands
 			//all units are dead so no unit movement
-			System.out.println("Fight in the node: "+targetNode+" was a draw!");
+			//System.out.println("Fight in the node: "+targetNode+" was a draw!");
 			return true;
 		}
 		//attacker wins
@@ -277,7 +259,7 @@ public class agentActions {
 			graph.map[targetNode].setNumberOfSquares(attackingSquares);
 			graph.map[targetNode].setNumberOfCircles(attackingCircles);
 			graph.map[targetNode].setNumberOfTriangles(attackingTriangles);
-			System.out.println("Node "+targetNode+" taken by Player "+attackerId+"!\n Remaining attacker units: \n Squares: "+attackingSquares+"\n Circles: "+attackingCircles+"\n Triangles: "+attackingTriangles);
+			//System.out.println("Node "+targetNode+" taken by Player "+attackerId+"!\n Remaining attacker units: \n Squares: "+attackingSquares+"\n Circles: "+attackingCircles+"\n Triangles: "+attackingTriangles);
 			return true;
 		}
 		//attacker loses

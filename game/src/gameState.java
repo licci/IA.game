@@ -2,7 +2,7 @@
 public class gameState {
 	boolean gameFinished = false;
 	
-	public boolean getGameState()
+	public boolean getState()
 	{
 		return gameFinished;
 	}
@@ -12,7 +12,7 @@ public class gameState {
 		gameFinished = state;
 	}
 	
-	public void gameCheck()
+	public void check()
 	{
 		if(graph.map[0].belongs() == 2 ) {
 			gameFinished = true; 
