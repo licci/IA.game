@@ -12,7 +12,7 @@ public class main {
 		
 		PApplet.main(new String[] { "--present", "NewGUI" });
 
-	
+	    WorldUpdate world = new WorldUpdate();
 	
 		agent agent1 = new agent();
 		
@@ -23,7 +23,8 @@ public class main {
 		
 	
 			agent1.randomAction();
-		
+			world.Update();
+			
 		}
 		//action.attack(1,0,1,10,10,10);
 		/*	try {

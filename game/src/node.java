@@ -120,6 +120,14 @@ public class node {
 		triangles = value;
 	}
 	
+	public int speed()
+	{
+		return unitCreationSpeed;
+	}
+	public int creationType()
+	{
+		return unitCreationType;
+	}
 	//this one is here just in case - it probably wont be used - adjacent nodes should not change during simulation
 	public void setAdjacentNodes(int a,int b, int c, int d,int e){
 		adjacentNodes [0]= a;
