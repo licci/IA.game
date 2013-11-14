@@ -1,4 +1,5 @@
 
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Vector;
@@ -12,8 +13,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
-
-public class DataParse extends DefaultHandler {
+public class DataReader extends DefaultHandler {
 
 	private Vector<node> nodes;
 	private String stringXML;
@@ -33,10 +33,10 @@ public class DataParse extends DefaultHandler {
 	private int unitCreationSpeed;
 	private int special;
 
-	public DataParse(String xml) {
+	public DataReader(String xml) {
 
 		super();
- 
+
 		nodes = new Vector<node>();
 		stringXML = xml;
 	}
@@ -58,7 +58,7 @@ public class DataParse extends DefaultHandler {
 
 		// find out if the element is a brand
 		if (qName.equals("node")) {
-
+			
 			idNumber = Integer.parseInt(atts.getValue("IDnumber"));
 			belongsTo = Integer.parseInt(atts.getValue("belongsTo"));
 			squares = Integer.parseInt(atts.getValue("squares"));
@@ -106,11 +106,9 @@ public class DataParse extends DefaultHandler {
 			readingAvailables = false;
 			readingNode = false;
 
-			nodes.add(new node());
-			
-			//	nodes.add(new node(idNumber, belongsTo, squares, circles,
-			//triangles, unitCreationType, unitCreationSpeed,
-			//adjacentNodes, availableAdjacentNodes, special));
+			nodes.add(new node(idNumber, belongsTo, squares, circles,
+					triangles, unitCreationType, unitCreationSpeed,
+					adjacentNodes, availableAdjacentNodes, special));
 		}
 
 	}
@@ -190,10 +188,17 @@ public class DataParse extends DefaultHandler {
 				+ "\t</node>\n"
 				+ "</graph>";
 
+		
+		xml = "<graph>"
++ "	<node IDnumber=\"0\"  belongsTo=\"1\"  squares=\"10\"  circles=\"10\"  triangles=\"10\"  unitCreationType=\"1\"  unitCreationSpeed=\"1\"  special=\"1\" >"
+//		<adjacentNodes number0="1" number1="2" number2="3" number3="-1" number4="-1" >		</adjacentNodes>
+//		<availableAdjacentNodes number0="1" number1="2" number2="3" number3="-1" number4="-1" >		</availableAdjacentNodes>
++ "	</node>"
++ "</graph>";
 
 		// Maybe with more nodes, it's only an example
 
-		DataParse parser = new DataParse(xml);
+		DataReader parser = new DataReader(xml);
 
 		Vector<node> nodes = parser.getData();
 
@@ -226,145 +231,3 @@ public class DataParse extends DefaultHandler {
 		}
 	}
 }
-
-
-
-
-
-/*
-import java.io.File;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
- 
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
- 
-public class DataParse extends node {
- 
-	public static void main(String argv[]) {
- 
-	  try {
- 
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
- 
-		Document doc = docBuilder.newDocument();
-		Element rootElement = doc.createElement("graph");
-		doc.appendChild(rootElement);
- 
-
-		Element node = doc.createElement("node");
-		rootElement.appendChild(node);
- 
-		Attr idnum = doc.createAttribute("IDnumber");
-		idnum.setValue(identificationNumber);
-		node.setAttributeNode(idnum);
-                
-                Attr belongs = doc.createAttribute("belongsTo");
-		belongs.setValue("0");
-		node.setAttributeNode(belongs);
-                
-                Attr squares = doc.createAttribute("squares");
-		squares.setValue("3");
-		node.setAttributeNode(squares);
-                
-                Attr circles = doc.createAttribute("circles");
-		circles.setValue("7");
-		node.setAttributeNode(circles);
-                
-                Attr triangles = doc.createAttribute("triangles");
-		triangles.setValue("0");
-		node.setAttributeNode(triangles);
-                
-                Attr creationtype = doc.createAttribute("unitCreationType");
-		creationtype.setValue("2");
-		node.setAttributeNode(creationtype);
-                
-                Attr creationspeed = doc.createAttribute("unitCreationSpeed");
-		creationspeed.setValue("1");
-		node.setAttributeNode(creationspeed);
-                
-                Attr special = doc.createAttribute("special");
-		special.setValue("0");
-		node.setAttributeNode(special);
- 
- 
-		
-		Element adjacent = doc.createElement("adjacentNodes");
-		node.appendChild(adjacent);
- 
-		Attr number1 = doc.createAttribute("number1");
-		number1.setValue("3");
-		adjacent.setAttributeNode(number1);
-                
-                Attr number2 = doc.createAttribute("number2");
-		number2.setValue("4");
-		adjacent.setAttributeNode(number2);
-                
-                Attr number3 = doc.createAttribute("number3");
-		number3.setValue("1");
-		adjacent.setAttributeNode(number3);
-                
-                Attr number4 = doc.createAttribute("number4");
-		number4.setValue("7");
-		adjacent.setAttributeNode(number4);
-                
-                Attr number5 = doc.createAttribute("number5");
-		number5.setValue("9");
-		adjacent.setAttributeNode(number5);
-                
-                
-                
-                Element available = doc.createElement("availableAdjacentNodes");
-		node.appendChild(available);
- 
-		Attr num1 = doc.createAttribute("number1");
-		num1.setValue("3");
-		available.setAttributeNode(num1);
-                
-                Attr num2 = doc.createAttribute("number2");
-		num2.setValue("4");
-		available.setAttributeNode(num2);
-                
-                Attr num3 = doc.createAttribute("number3");
-		num3.setValue("1");
-		available.setAttributeNode(num3);
-                
-                Attr num4 = doc.createAttribute("number4");
-		num4.setValue("7");
-		available.setAttributeNode(num4);
-                
-                Attr num5 = doc.createAttribute("number5");
-		num5.setValue("9");
-		available.setAttributeNode(num5);
-                
- 
-		
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		DOMSource source = new DOMSource(doc);
-		
-                //StreamResult result = new StreamResult(new File("C:\\blabla.xml"));
-                StreamResult result =  new StreamResult(System.out);
-                transformer.transform(source, result);
- 
-		
- 
-		System.out.println("File saved!");
-
- 
-	  } catch (ParserConfigurationException pce) {
-		pce.printStackTrace();
-	  } catch (TransformerException tfe) {
-		tfe.printStackTrace();
-	  }
-	}
-}
-*/
