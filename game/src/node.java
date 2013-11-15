@@ -68,6 +68,46 @@ public class node {
 		special = spec;
 		//System.out.println("Node " +id+ " was succesfully created!");
 	}
+	
+	// MARCOS: Added this constructor for the data transmission, if it's not needed, tell me
+	
+	public node(int idNumber, int belongsTo, int squ, int cir,
+			int tra, int type, int speed,
+			int[] adjNodes, int[] availableAdjNodes, int spec) {
+		// TODO Auto-generated constructor stub
+		
+		identificationNumber = idNumber;
+		//number of player node belongs to (0 - neutral)
+		this.belongsTo = belongsTo;
+		
+		//units
+		squares = squ;
+		circles = cir;
+		triangles = tra;
+		
+		//production of units
+		unitCreationType = type;
+		unitCreationSpeed = speed;
+		
+		//node placement and surroundings
+		adjacentNodes [0]= adjNodes[0];
+		adjacentNodes [1]= adjNodes[1];
+		adjacentNodes [2]= adjNodes[2];
+		adjacentNodes [3]= adjNodes[3];
+		adjacentNodes [4]= adjNodes[4];
+		
+		availableAdjacentNodes [0]= availableAdjNodes[0];
+		availableAdjacentNodes [1]= availableAdjNodes[1];
+		availableAdjacentNodes [2]= availableAdjNodes[2];
+		availableAdjacentNodes [3]= availableAdjNodes[3];
+		availableAdjacentNodes [4]= availableAdjNodes[4];
+		
+		//possible special abilities of a node
+		special = spec;
+		//System.out.println("Node " +id+ " was succesfully created!");
+		
+	}
+
 	//methods for getting data about node
 	public int get_id(){
 		return identificationNumber;
