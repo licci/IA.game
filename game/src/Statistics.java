@@ -1,4 +1,3 @@
-//testing git changes
 import java.lang.String;//Used for storing Player name
 
 public class Statistics {
@@ -95,6 +94,49 @@ public int getBridgebuild(){
 public int getLost(){
 	return unitsLost;
 }
-
+public void getFulldata(){
+	System.out.println("Statistics for: "+Name);	
+	System.out.println("Produced units: "+producedUnits);	
+	System.out.println("Moves performed: "+Moves);	
+	System.out.println("Waits prfformed: "+Waits);	
+	System.out.println("Attacs performed: "+Attacks);	
+	System.out.println("Units killed by player: " +unitsKilled);
+	System.out.println("Bridges burned: "+burnedBridges);	
+	System.out.println("Bridges build: "+buildBridges);	
+	System.out.println("Units lost: "+unitsLost);	
+}
 
 }
+
+//DEBUG
+/*
+Statistics Player1 = new Statistics("Player1");
+Statistics Player2 = new Statistics("Player2");
+
+System.out.println(Player1.getName());
+System.out.println(Player2.getName());
+
+System.out.println(Player1.getUnit());
+System.out.println(Player2.getUnit());
+
+System.out.println(Player1.getMoves());
+System.out.println(Player2.getMoves());
+
+System.out.println(Player1.getWait());
+System.out.println(Player2.getWait());
+
+System.out.println(Player1.getAttac());
+System.out.println(Player2.getAttac());
+
+System.out.println(Player1.getKilled());
+System.out.println(Player2.getKilled());
+
+System.out.println(Player1.getBridgeburned());
+System.out.println(Player2.getBridgeburned());
+
+System.out.println(Player1.getBridgebuild());
+System.out.println(Player2.getBridgebuild());
+
+System.out.println(Player1.getLost());
+System.out.println(Player2.getLost());
+*/
