@@ -4,6 +4,7 @@ public class main {
 	public static gameState game = new gameState();
 	public static graph graph = new graph();
 	public static agentActions action = new agentActions();
+	public static int turnCount = 0;
 
 	public static void main(String[] args) {
 
@@ -19,8 +20,8 @@ public class main {
 
 		int currentAgent = 1;
 
-		for (int i = 0; i < 50; i++) {
-
+		while(!game.getState()) {
+			turnCount++;
 			System.out
 					.println("------------------------------------------ START TURN  - "
 							+ turnNr + " ----------------------------------");
@@ -54,7 +55,7 @@ public class main {
 			turnNr++;
 			
 			world.Update();
-
+			game.check();
 		}
 		// action.attack(1,0,1,10,10,10);
 		/*
