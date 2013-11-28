@@ -5,7 +5,9 @@ import CLIPSJNI.*;
 
 public class PruebaJNI {
 
-	private Environment clips;
+	private Environment clips;		// CLIPS Environment variable to load .cpl file, to eval asserts and run agent
+	
+	// boolean variables
 	
 	private boolean legs;
 	private boolean mammary;
