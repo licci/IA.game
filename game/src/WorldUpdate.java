@@ -16,7 +16,7 @@ public class WorldUpdate {
          if(times>6) times=0;
          
 			int type,speed;
-			for(int i=0;i<13;i++)
+			for(int i=0;i<14;i++)
 			{
 				type=graph.map[i].creationType();
 				speed=graph.map[i].speed();
