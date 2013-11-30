@@ -185,7 +185,7 @@ public class node {
 		availableAdjacentNodes [4]= e;
 	}
 	
-	public void setAvailableAdjacentNodes (int [] nodes){
+	public void setAvailableNodes (int [] nodes){
 		availableAdjacentNodes = nodes.clone();
 	}
 	
