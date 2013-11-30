@@ -185,6 +185,10 @@ public class node {
 		availableAdjacentNodes [4]= e;
 	}
 	
+	public void setAvailableAdjacentNodes (int [] nodes){
+		availableAdjacentNodes = nodes.clone();
+	}
+	
 	public void changeRoadState(int nodeId, boolean state){
 		for(int i = 0; i < 5; i++)
 		{
