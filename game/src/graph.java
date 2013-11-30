@@ -7,7 +7,7 @@ public class graph {
 	{
 		//id,player,squ,cir,tra,type,speed,a,b,c,d,e,f,spec
 		//hq1
-		map [0] = 	new node (0,1,	10,10,10,	1,1,	1,2,3,-1,-1,	1);
+		map [0] = 	new node (0,1,	50,50,50,	1,1,	1,2,3,-1,-1,	1);
 		
 		map [1] =	new node (1,0,	10,0,0,		1,1,	0,4,5,-1,-1,	1);
 		map [2] =	new node (2,0,	0,10,0,		2,2,	0,4,6,-1,-1,	1);
@@ -26,7 +26,7 @@ public class graph {
 		map [12] =	new node (12,0,	10,0,0,		1,1,	8,9,13,-1,-1,	1);
 		
 		//hq2
-		map [13] = 	new node (13,2,	10,10,10,	1,1,	10,11,12,-1,-1,	1);
+		map [13] = 	new node (13,2,	50,50,50,	1,1,	10,11,12,-1,-1,	1);
 	}
 }
 
