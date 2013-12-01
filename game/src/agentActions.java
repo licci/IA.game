@@ -1,23 +1,6 @@
 
 public class agentActions {
 
-	/*This attack function is based on following rules:
-	 * - fight has 3 steps
-	 * - in first step attacking units fight with enemy units that are most vulnerable (squares attack triangle and so on)
-	 * - in second step attacking units fight with enemy units of the same type they are (squares attack squares and so on)
-	 * - in third step attacking units fight with enemy units that are resistant to their type (squares attack circle and so on)
-	 * I assumed that advantage over weaker units is equal 2 - this means that attacking squares will kill 2 times more enemies that their own number
-	 * ex. 30 squares attack a node with 50 circles inside, node has no special property (special = 1)
-	 * result of the fight is calculated as follows
-	 * 30 - 0.5*50*special
-	 * 30 - 0.5*50*1 = 5
-	 * so the attacker won, node now belongs to him and he has 5 squares in the node
-	 * 
-	 * This works both was - if we attack node with 20 squares and no special property with 30 triangle result will be:
-	 * 20 - 0.5*30/special
-	 * 20 - 0.5*30/1 = 20 - 15 = 5 
-	 * Defender won and still has 5 triangles inside the node
-	 */
 	public boolean move(int playerId, int startNode, int targetNode, int movingSquares, int movingCircles, int movingTriangles){
 		
 		boolean movePossible = false;
