@@ -22,7 +22,7 @@ public class agentActions {
 		
 		boolean movePossible = false;
 
-		if(playerId == graph.map[startNode].belongsTo & playerId == graph.map[targetNode].belongsTo);
+		if(playerId == graph.map[startNode].belongsTo && playerId == graph.map[targetNode].belongsTo);
 		else {
 			//System.out.println("One of the nodes is not yours Player "+playerId+" - action impossible!");
 			return false;
@@ -38,7 +38,7 @@ public class agentActions {
 			}
 		}
 		
-		if (graph.map[startNode].numberOfSquares()>= movingSquares & graph.map[startNode].numberOfCircles()>= movingCircles & graph.map[startNode].numberOfTriangles()>= movingTriangles){
+		if (graph.map[startNode].numberOfSquares()>= movingSquares && graph.map[startNode].numberOfCircles()>= movingCircles && graph.map[startNode].numberOfTriangles()>= movingTriangles){
 			movePossible = true;
 			//System.out.println("Units available!");
 		} else {
@@ -86,7 +86,7 @@ public class agentActions {
 				}
 			}
 			
-			if (graph.map[startNode].numberOfSquares()>= attackingSquares & graph.map[startNode].numberOfCircles()>= attackingCircles & graph.map[startNode].numberOfTriangles()>= attackingTriangles){
+			if (graph.map[startNode].numberOfSquares()>= attackingSquares && graph.map[startNode].numberOfCircles()>= attackingCircles && graph.map[startNode].numberOfTriangles()>= attackingTriangles){
 				strikePossible = true;
 				//System.out.println("Units available!");
 			} else {
@@ -246,14 +246,14 @@ public class agentActions {
 	
 	public boolean battleEnded (int attackerId, int startNode, int targetNode, int attackingSquares, int attackingCircles, int attackingTriangles,int defendingSquares, int defendingCircles, int defendingTriangles){
 		//draw
-		if(defendingSquares == 0 & defendingCircles == 0 & defendingTriangles == 0 & attackingSquares == 0 & attackingCircles == 0 & attackingTriangles ==0) {
+		if(defendingSquares == 0 && defendingCircles == 0 && defendingTriangles == 0 && attackingSquares == 0 && attackingCircles == 0 && attackingTriangles ==0) {
 			//node does not change hands
 			//all units are dead so no unit movement
 			//System.out.println("Fight in the node: "+targetNode+" was a draw!");
 			return true;
 		}
 		//attacker wins
-		else if(defendingSquares == 0 & defendingCircles == 0 & defendingTriangles == 0) {
+		else if(defendingSquares == 0 && defendingCircles == 0 && defendingTriangles == 0) {
 			//node change hands
 			graph.map[targetNode].setOwner(attackerId);
 			//remaining attackers arrive at node
@@ -264,7 +264,7 @@ public class agentActions {
 			return true;
 		}
 		//attacker loses
-		else if (attackingSquares == 0 & attackingCircles == 0 & attackingTriangles ==0){
+		else if (attackingSquares == 0 && attackingCircles == 0 && attackingTriangles ==0){
 			//remaining defenders
 			graph.map[targetNode].setNumberOfSquares(defendingSquares);
 			graph.map[targetNode].setNumberOfCircles(defendingCircles);
