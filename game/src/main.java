@@ -25,7 +25,7 @@ public class main {
 		
 		int tossResult = -1; 
 		
-		//commented out so you can see how CLIPS works
+		//Commented out so you can see how CLIPS works
 		/*
 		while(!game.getState()) {
 			turnCount++;
