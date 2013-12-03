@@ -57,6 +57,7 @@ public class agentActions {
 		if(attackerId == graph.map[startNode].belongsTo);
 			else {
 				//System.out.println("Node is not yours Player "+attackerId+" - action impossible!");
+				return false;
 			}
 		
 			for (int i=0; i<5; i++){
