@@ -59,6 +59,10 @@ public class agentActions {
 				//System.out.println("Node is not yours Player "+attackerId+" - action impossible!");
 				return false;
 			}
+		if(attackerId == graph.map[targetNode].belongsTo) {
+			//System.out.println("Attacking your own node - action impossible!");
+			return false;
+		}
 		
 			for (int i=0; i<5; i++){
 				int[] checkStrikePossibility = new int [5];
