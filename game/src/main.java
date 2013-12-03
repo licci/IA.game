@@ -21,7 +21,7 @@ public class main {
 		
 		//new CLIPS interface - uses test template
 		CLIPS_Interface testAgent = new CLIPS_Interface("testAgent.clp");
-		testAgent.CLIPS(graph);
+		testAgent.CLIPS(graph,1);
 		
 		int tossResult = -1; 
 		
