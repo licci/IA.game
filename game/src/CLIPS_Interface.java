@@ -23,7 +23,7 @@ public class CLIPS_Interface {
 	 * Because we have for of war in our game graph sent to this agent MUST NOT be the game graph, but copyOfGraph.
 	 * You HAVE TO create copy of the world AND estimate certain values (owner of the node, unit counts) FOR EVERY node your agent cannot see! 
 	*/
-	public int [] CLIPS(graph graph, int id) {
+	public int [] CLIPS(copyOfGraph graph, int id) {
 
 		int [] actionToCommit = null;
 		//create CLIPS environment
