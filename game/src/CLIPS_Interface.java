@@ -161,15 +161,16 @@ public class CLIPS_Interface {
 		action = clips.eval(chosenAction); 
 		try { System.out.println(action.stringValue()); 
 		data = action.stringValue();
-			} 
-		catch (Exception error){ System.out.println("Invalid string value"); } 
-		
 		start = Integer.parseInt(data.charAt(0) +""+ data.charAt(1));
 		target = Integer.parseInt(data.charAt(2) +""+ data.charAt(3));
 		type =  Integer.parseInt(data.charAt(4)+""+ data.charAt(5));
-		 System.out.println(start);
-		 System.out.println(target);
-		 System.out.println(type);
+		System.out.println(start);
+		System.out.println(target);
+		System.out.println(type);
+			} 
+		catch (Exception error){ System.out.println("Invalid string value"); } 
+		
+
 		
 		
 		return actionToCommit;
