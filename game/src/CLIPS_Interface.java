@@ -153,7 +153,7 @@ public class CLIPS_Interface {
 		 * You can add more variable like this to your agent following the same procedure like the one with "action" variable.
 		 */
 	
-		String data = null;
+		String data = "000000";
 		int start;
 		int target;
 		int type;
@@ -161,16 +161,20 @@ public class CLIPS_Interface {
 		action = clips.eval(chosenAction); 
 		try { System.out.println(action.stringValue()); 
 		data = action.stringValue();
+
+			} 
+		catch (Exception error){ System.out.println("Invalid string value"); } 
+		
+		
+		if (data.length() < 6) data = "000000";
+		System.out.println("data out try " +data); 
+		
 		start = Integer.parseInt(data.charAt(0) +""+ data.charAt(1));
 		target = Integer.parseInt(data.charAt(2) +""+ data.charAt(3));
 		type =  Integer.parseInt(data.charAt(4)+""+ data.charAt(5));
 		System.out.println(start);
 		System.out.println(target);
 		System.out.println(type);
-			} 
-		catch (Exception error){ System.out.println("Invalid string value"); } 
-		
-
 		
 		
 		return actionToCommit;

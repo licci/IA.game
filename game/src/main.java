@@ -40,7 +40,7 @@ public class main {
 		int tossResult = -1; 
 		
 		//Commented out so you can see how CLIPS works
-		/*
+		
 		while(!game.getState()) {
 			turnCount++;
 			
@@ -64,7 +64,7 @@ public class main {
 			game.check();
 		}
 		System.out.println("Game finished in round "+ turnCount);
-		*/
+		
 	}
 	public static void pause(int time){
 		try {
