@@ -35,27 +35,21 @@ public class randomAgent implements agent {
 
 			System.out.println("ATTACK DEBUG - " + x + " / " + RandomNode);
 
-			if (x > 0) {
+			if (x >= 0) {
+				System.out.println("ATTACK DEBUG - " + x + " / " + RandomNode);
+				
 				ifSuccessAttack = action.attack(agentId, RandomNode, x,
 						graph.map[RandomNode].numberOfSquares(),
 						graph.map[RandomNode].numberOfCircles(),
 						graph.map[RandomNode].numberOfTriangles());
-
-				/*
-				 * if (ifSuccessAttack == true) {
-				 * 
-				 * if (agentId == 1) { aid1move = true; aid1LastNode = x; } if
-				 * (agentId == 2) { aid2move = true; aid2LastNode = x; } } else
-				 * {
-				 * 
-				 * if (agentId == 1) { aid1move = true; } if (agentId == 2) {
-				 * aid2move = true; }
-				 * 
-				 * }
-				 */
+				
+				if (ifSuccessAttack == true) {
+					System.out.println("Succes in attack!");
+					return;
+				}
 			}
 
-			if (ifSuccessAttack == false) {
+			if (ifSuccessAttack == true) {
 				System.out.println("No success, let's try again!");
 				performAction(agentId);
 			}

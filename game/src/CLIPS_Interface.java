@@ -12,7 +12,8 @@ import CLIPSJNI.*;
 public class CLIPS_Interface {
 
 	// The name of the CLIPS file where the agent is stored
-	public String agentFile; 
+	public String agentFile;
+	public int [] actionToCommit = new int [6]; 
 
 	public CLIPS_Interface(String file) {
 
@@ -24,18 +25,28 @@ public class CLIPS_Interface {
 	 * You HAVE TO create copy of the world AND estimate certain values (owner of the node, unit counts) FOR EVERY node your agent cannot see! 
 	*/
 	public int [] CLIPS(copyOfGraph graph, int id) {
-
-		int [] actionToCommit = null;
 		//create CLIPS environment
 		Environment clips = new Environment();
 		
 		PrimitiveValue action; 
-		String chosenAction = "?*global-var*"; 
+		String chosenAction = "?*global*"; 
 		
+		PrimitiveValue square; 
+		String sq = "?*squares*"; 
+		
+		PrimitiveValue circle; 
+		String cr = "?*circles*"; 
+		
+		PrimitiveValue triangle; 
+		String tr = "?*triangles*"; 
+		
+
+		
+		clips.reset();
+
 		// Here loads the .clp file with your agent rules
 		//this file has to contain basic temple for world data
 		clips.load(agentFile);
-
 		// this is made to reset the values of the agent
 		clips.reset();
 
@@ -46,7 +57,7 @@ public class CLIPS_Interface {
 		 */
 		int a,b,c,d,e;
 		//asserting current agent ID
-		clips.assertString( "(ID "+id+")" );
+		clips.assertString( "(player (ID "+id+"))" );
 		
 		a = graph.map[0].getAdjacentNodes()[0];
 		b = graph.map[0].getAdjacentNodes()[1];
@@ -153,31 +164,71 @@ public class CLIPS_Interface {
 		 * You can add more variable like this to your agent following the same procedure like the one with "action" variable.
 		 */
 	
+		//get action iformation
 		String data = "000000";
 		int start;
 		int target;
 		int type;
-		
-		action = clips.eval(chosenAction); 
-		try { System.out.println(action.stringValue()); 
-		data = action.stringValue();
 
+		action = clips.eval(chosenAction); 
+		try { 
+			//System.out.println(action.stringValue()); 
+			data = action.stringValue();
+			//System.out.println("data in try " +data); 
 			} 
 		catch (Exception error){ System.out.println("Invalid string value"); } 
 		
-		
-		if (data.length() < 6) data = "000000";
+		if (data.length() < 6) data = "000000"; //wait - agent will wait if such code is in data
 		System.out.println("data out try " +data); 
 		
 		start = Integer.parseInt(data.charAt(0) +""+ data.charAt(1));
 		target = Integer.parseInt(data.charAt(2) +""+ data.charAt(3));
 		type =  Integer.parseInt(data.charAt(4)+""+ data.charAt(5));
-		System.out.println(start);
-		System.out.println(target);
-		System.out.println(type);
 		
+		
+		System.out.println("Start " +start); 
+		System.out.println("Target " +target); 
+		System.out.println("Type " +type); 
+		
+		if(data.equals("000000")){
+			type = -1;
+		}
+		
+		actionToCommit[0] = type;
+		actionToCommit[1] = start;
+		actionToCommit[2] = target;
+		
+		//get units information
+		String squares = "0";
+		String circles = "0";
+		String triangles = "0";
+		
+		square = clips.eval(sq); 
+		circle = clips.eval(cr); 
+		triangle = clips.eval(tr); 
+		try { 
+			//System.out.println(action.stringValue()); 
+			squares = square.stringValue();
+			circles = circle.stringValue();
+			triangles = triangle.stringValue();
+			//System.out.println("data in try " +data); 
+			} 
+		catch (Exception error){ System.out.println("Invalid string value"); } 
+		
+		if (squares.length() < 1) squares = "0";
+		if (circles.length() < 1) circles = "0";
+		if (triangles.length() < 1) triangles = "0";
+		
+		System.out.println("squares " +Integer.parseInt(squares)); 
+		System.out.println("circles " +Integer.parseInt(circles)); 
+		System.out.println("triangles " +Integer.parseInt(triangles)); 
+		
+		System.out.println("units out try " +squares+" "+circles+" "+triangles); 
+		
+		actionToCommit[3] = Integer.parseInt(squares);
+		actionToCommit[4] = Integer.parseInt(circles);
+		actionToCommit[5] = Integer.parseInt(triangles);
 		
 		return actionToCommit;
-		
 	}
 }

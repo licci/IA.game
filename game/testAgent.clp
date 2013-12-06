@@ -21,13 +21,17 @@ slot ID (type INTEGER)
 )
 
 //variable used to return selected action to game
-(defglobal ?*global-var* = "") 
+(defglobal ?*global* = "") 
+
+(defglobal ?*squares* = "")
+(defglobal ?*circles* = "")
+(defglobal ?*triangles* = "")
 
 //print result
 (defrule hello 
   => 
   (printout t "Action chosen" crlf)
-  (bind ?*global-var* "010201") 
+  (bind ?*global* "000000") 
 )
   
  //example rules
