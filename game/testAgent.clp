@@ -1,7 +1,9 @@
 //This is a template on which you should build your knowledge agents
 //You should create your agents on LOCAL COPY of this template!
 
-slot ID (type INTEGER)
+(deftemplate player
+	(slot ID (type INTEGER))
+)
 
 //datastructure holding data about a node
 (deftemplate node
@@ -27,6 +29,35 @@ slot ID (type INTEGER)
 (defglobal ?*squares* = 0)
 (defglobal ?*circles* = 0)
 (defglobal ?*triangles* = 0)
+
+(defglobal ?*myNodes* = 0)
+
+(defglobal ?*HQ* = 0)
+
+(defrule infoMyNodes
+(declare (salience 1000))
+	(player (ID ?idnum))
+	=>
+		(if (< ?*myNodes* 2) then
+			(printout t "I have " ?*myNodes* " node!" crlf)
+		else (printout t "I have " ?*myNodes* " nodes!" crlf))
+		
+		(printout  t "Agent ID is " ?idnum crlf)
+		
+		(if (= ?idnum 1) then
+			(bind ?*HQ* 0) 
+		else (bind ?*HQ* 13) )
+		(printout t "Agent HQ is node " ?*HQ* crlf)
+)
+
+(defrule countMyNodes
+(declare (salience 1000))
+	(node (belongsTo ?owner) (idNumber ?number))
+	=>
+			(if (= ?owner 1) then
+				(bind ?*myNodes* (+ ?*myNodes* 1)) 
+			) 
+)
 
 //print result
 (defrule test

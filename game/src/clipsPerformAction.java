@@ -12,7 +12,7 @@ public class clipsPerformAction {
 	public clipsPerformAction(String file1, String file2){
 		
 		playerOne = new CLIPS_Interface(file1);
-		playerOne = new CLIPS_Interface(file2);
+		playerTwo = new CLIPS_Interface(file2);
 		
 		world.initialization();
 	}
@@ -25,7 +25,8 @@ public class clipsPerformAction {
 		getWorldState(id);
 		
 		//action = LaughingMan.CLIPS(world,1);
-		action = playerOne.CLIPS(world,1);
+		if(id == 1) action = playerOne.CLIPS(world,1);
+		else action = playerTwo.CLIPS(world,2);
 		
 		//commit action
 		if(action[0]==0){
