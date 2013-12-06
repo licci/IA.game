@@ -199,15 +199,35 @@ public class CLIPS_Interface {
 		actionToCommit[2] = target;
 		
 		//get units information
-		String squares = "0";
-		String circles = "0";
-		String triangles = "0";
+
 		
 		square = clips.eval(sq); 
 		circle = clips.eval(cr); 
 		triangle = clips.eval(tr); 
+		
+		int squares =0;
+		int circles =0;
+		int triangles =0;
 		try { 
-			//System.out.println(action.stringValue()); 
+			//System.out.println(action.stringValue());
+			squares = square.intValue();
+			circles = circle.intValue();
+			triangles = triangle.intValue();
+			//System.out.println("data in try " +data); 
+			} 
+		catch (Exception error){ System.out.println("Invalid string value"); } 
+	
+		System.out.println("units out try " +squares+" "+circles+" "+triangles); 
+		
+		actionToCommit[3] = squares;
+		actionToCommit[4] = circles;
+		actionToCommit[5] = triangles;
+		/*
+		String squares = "0";
+		String circles = "0";
+		String triangles = "0";
+		try { 
+			//System.out.println(action.stringValue());
 			squares = square.stringValue();
 			circles = circle.stringValue();
 			triangles = triangle.stringValue();
@@ -228,7 +248,7 @@ public class CLIPS_Interface {
 		actionToCommit[3] = Integer.parseInt(squares);
 		actionToCommit[4] = Integer.parseInt(circles);
 		actionToCommit[5] = Integer.parseInt(triangles);
-		
+		*/
 		return actionToCommit;
 	}
 }

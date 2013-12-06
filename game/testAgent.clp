@@ -23,15 +23,21 @@ slot ID (type INTEGER)
 //variable used to return selected action to game
 (defglobal ?*global* = "") 
 
-(defglobal ?*squares* = "")
-(defglobal ?*circles* = "")
-(defglobal ?*triangles* = "")
+
+(defglobal ?*squares* = 0)
+(defglobal ?*circles* = 0)
+(defglobal ?*triangles* = 0)
 
 //print result
-(defrule hello 
+(defrule test
+(node (idNumber 0) (squares ?sq) (circles ?cir) (triangles ?tra))
   => 
   (printout t "Action chosen" crlf)
+
   (bind ?*global* "000000") 
+   (bind ?*squares* ?sq) 
+   (bind ?*circles* (* ?cir 2)) 
+   (bind ?*triangles* (- ?tra 10)) 
 )
   
  //example rules

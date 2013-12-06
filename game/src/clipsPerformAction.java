@@ -95,7 +95,7 @@ public class clipsPerformAction {
 		int enemyHQ = 0;
 		int enemyID = 0;
 		
-		if(id == 0){
+		if(id == 1){
 			enemyHQ = 13;
 			enemyID = 2;
 		}
