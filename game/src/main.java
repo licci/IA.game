@@ -38,12 +38,20 @@ public class main {
 			if (tossResult == 0)
 			{	
 				agent1.performAction(1);
+				game.check();
+				if (game.getState()) break;
 				agent2.performAction(2);
+				game.check();
+				if (game.getState()) break;
 			}
 			else if (tossResult == 1)
 			{	
 				agent2.performAction(2);
+				game.check();
+				if (game.getState()) break;
 				agent1.performAction(1);
+				game.check();
+				if (game.getState()) break;
 			}
 			
 			world.Update();

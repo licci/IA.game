@@ -59,102 +59,102 @@ public class CLIPS_Interface {
 		//asserting current agent ID
 		clips.assertString( "(player (ID "+id+"))" );
 		
-		a = graph.map[0].getAdjacentNodes()[0];
-		b = graph.map[0].getAdjacentNodes()[1];
-		c = graph.map[0].getAdjacentNodes()[2];
-		d = graph.map[0].getAdjacentNodes()[3];
-		e = graph.map[0].getAdjacentNodes()[4];
+		a = graph.map[0].getAvailableNodes()[0];
+		b = graph.map[0].getAvailableNodes()[1];
+		c = graph.map[0].getAvailableNodes()[2];
+		d = graph.map[0].getAvailableNodes()[3];
+		e = graph.map[0].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[0].get_id()+") (belongsTo "+graph.map[0].belongs()+") (squares "+graph.map[0].numberOfSquares()+") (circles "+graph.map[0].numberOfCircles()+") (triangles "+graph.map[0].numberOfTriangles()+") (unitCreationType "+graph.map[0].creationType()+") (unitCreationSpeed "+graph.map[0].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") )");
 		
-		a = graph.map[1].getAdjacentNodes()[0];
-		b = graph.map[1].getAdjacentNodes()[1];
-		c = graph.map[1].getAdjacentNodes()[2];
-		d = graph.map[1].getAdjacentNodes()[3];
-		e = graph.map[1].getAdjacentNodes()[4];
+		a = graph.map[1].getAvailableNodes()[0];
+		b = graph.map[1].getAvailableNodes()[1];
+		c = graph.map[1].getAvailableNodes()[2];
+		d = graph.map[1].getAvailableNodes()[3];
+		e = graph.map[1].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[1].get_id()+") (belongsTo "+graph.map[1].belongs()+") (squares "+graph.map[1].numberOfSquares()+") (circles "+graph.map[1].numberOfCircles()+") (triangles "+graph.map[1].numberOfTriangles()+") (unitCreationType "+graph.map[1].creationType()+") (unitCreationSpeed "+graph.map[1].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") )");
 		
-		a = graph.map[2].getAdjacentNodes()[0];
-		b = graph.map[2].getAdjacentNodes()[1];
-		c = graph.map[2].getAdjacentNodes()[2];
-		d = graph.map[2].getAdjacentNodes()[3];
-		e = graph.map[2].getAdjacentNodes()[4];
+		a = graph.map[2].getAvailableNodes()[0];
+		b = graph.map[2].getAvailableNodes()[1];
+		c = graph.map[2].getAvailableNodes()[2];
+		d = graph.map[2].getAvailableNodes()[3];
+		e = graph.map[2].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[2].get_id()+") (belongsTo "+graph.map[2].belongs()+") (squares "+graph.map[2].numberOfSquares()+") (circles "+graph.map[2].numberOfCircles()+") (triangles "+graph.map[2].numberOfTriangles()+") (unitCreationType "+graph.map[2].creationType()+") (unitCreationSpeed "+graph.map[2].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") )");
 		
-		a = graph.map[3].getAdjacentNodes()[0];
-		b = graph.map[3].getAdjacentNodes()[1];
-		c = graph.map[3].getAdjacentNodes()[2];
-		d = graph.map[3].getAdjacentNodes()[3];
-		e = graph.map[3].getAdjacentNodes()[4];
+		a = graph.map[3].getAvailableNodes()[0];
+		b = graph.map[3].getAvailableNodes()[1];
+		c = graph.map[3].getAvailableNodes()[2];
+		d = graph.map[3].getAvailableNodes()[3];
+		e = graph.map[3].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[3].get_id()+") (belongsTo "+graph.map[3].belongs()+") (squares "+graph.map[3].numberOfSquares()+") (circles "+graph.map[3].numberOfCircles()+") (triangles "+graph.map[3].numberOfTriangles()+") (unitCreationType "+graph.map[3].creationType()+") (unitCreationSpeed "+graph.map[3].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") )");
 		
-		a = graph.map[4].getAdjacentNodes()[0];
-		b = graph.map[4].getAdjacentNodes()[1];
-		c = graph.map[4].getAdjacentNodes()[2];
-		d = graph.map[4].getAdjacentNodes()[3];
-		e = graph.map[4].getAdjacentNodes()[4];
+		a = graph.map[4].getAvailableNodes()[0];
+		b = graph.map[4].getAvailableNodes()[1];
+		c = graph.map[4].getAvailableNodes()[2];
+		d = graph.map[4].getAvailableNodes()[3];
+		e = graph.map[4].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[4].get_id()+") (belongsTo "+graph.map[4].belongs()+") (squares "+graph.map[4].numberOfSquares()+") (circles "+graph.map[4].numberOfCircles()+") (triangles "+graph.map[4].numberOfTriangles()+") (unitCreationType "+graph.map[4].creationType()+") (unitCreationSpeed "+graph.map[4].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") )");
 		
-		a = graph.map[5].getAdjacentNodes()[0];
-		b = graph.map[5].getAdjacentNodes()[1];
-		c = graph.map[5].getAdjacentNodes()[2];
-		d = graph.map[5].getAdjacentNodes()[3];
-		e = graph.map[5].getAdjacentNodes()[4];
+		a = graph.map[5].getAvailableNodes()[0];
+		b = graph.map[5].getAvailableNodes()[1];
+		c = graph.map[5].getAvailableNodes()[2];
+		d = graph.map[5].getAvailableNodes()[3];
+		e = graph.map[5].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[5].get_id()+") (belongsTo "+graph.map[5].belongs()+") (squares "+graph.map[5].numberOfSquares()+") (circles "+graph.map[5].numberOfCircles()+") (triangles "+graph.map[5].numberOfTriangles()+") (unitCreationType "+graph.map[5].creationType()+") (unitCreationSpeed "+graph.map[5].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") )");
 		
-		a = graph.map[6].getAdjacentNodes()[0];
-		b = graph.map[6].getAdjacentNodes()[1];
-		c = graph.map[6].getAdjacentNodes()[2];
-		d = graph.map[6].getAdjacentNodes()[3];
-		e = graph.map[6].getAdjacentNodes()[4];
+		a = graph.map[6].getAvailableNodes()[0];
+		b = graph.map[6].getAvailableNodes()[1];
+		c = graph.map[6].getAvailableNodes()[2];
+		d = graph.map[6].getAvailableNodes()[3];
+		e = graph.map[6].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[6].get_id()+") (belongsTo "+graph.map[6].belongs()+") (squares "+graph.map[6].numberOfSquares()+") (circles "+graph.map[6].numberOfCircles()+") (triangles "+graph.map[6].numberOfTriangles()+") (unitCreationType "+graph.map[6].creationType()+") (unitCreationSpeed "+graph.map[6].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") )");
 		
-		a = graph.map[7].getAdjacentNodes()[0];
-		b = graph.map[7].getAdjacentNodes()[1];
-		c = graph.map[7].getAdjacentNodes()[2];
-		d = graph.map[7].getAdjacentNodes()[3];
-		e = graph.map[7].getAdjacentNodes()[4];
+		a = graph.map[7].getAvailableNodes()[0];
+		b = graph.map[7].getAvailableNodes()[1];
+		c = graph.map[7].getAvailableNodes()[2];
+		d = graph.map[7].getAvailableNodes()[3];
+		e = graph.map[7].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[7].get_id()+") (belongsTo "+graph.map[7].belongs()+") (squares "+graph.map[7].numberOfSquares()+") (circles "+graph.map[7].numberOfCircles()+") (triangles "+graph.map[7].numberOfTriangles()+") (unitCreationType "+graph.map[7].creationType()+") (unitCreationSpeed "+graph.map[7].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") )");
 		
-		a = graph.map[8].getAdjacentNodes()[0];
-		b = graph.map[8].getAdjacentNodes()[1];
-		c = graph.map[8].getAdjacentNodes()[2];
-		d = graph.map[8].getAdjacentNodes()[3];
-		e = graph.map[8].getAdjacentNodes()[4];
+		a = graph.map[8].getAvailableNodes()[0];
+		b = graph.map[8].getAvailableNodes()[1];
+		c = graph.map[8].getAvailableNodes()[2];
+		d = graph.map[8].getAvailableNodes()[3];
+		e = graph.map[8].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[8].get_id()+") (belongsTo "+graph.map[8].belongs()+") (squares "+graph.map[8].numberOfSquares()+") (circles "+graph.map[8].numberOfCircles()+") (triangles "+graph.map[8].numberOfTriangles()+") (unitCreationType "+graph.map[8].creationType()+") (unitCreationSpeed "+graph.map[8].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") )");
 		
-		a = graph.map[9].getAdjacentNodes()[0];
-		b = graph.map[9].getAdjacentNodes()[1];
-		c = graph.map[9].getAdjacentNodes()[2];
-		d = graph.map[9].getAdjacentNodes()[3];
-		e = graph.map[9].getAdjacentNodes()[4];
+		a = graph.map[9].getAvailableNodes()[0];
+		b = graph.map[9].getAvailableNodes()[1];
+		c = graph.map[9].getAvailableNodes()[2];
+		d = graph.map[9].getAvailableNodes()[3];
+		e = graph.map[9].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[9].get_id()+") (belongsTo "+graph.map[9].belongs()+") (squares "+graph.map[9].numberOfSquares()+") (circles "+graph.map[9].numberOfCircles()+") (triangles "+graph.map[9].numberOfTriangles()+") (unitCreationType "+graph.map[9].creationType()+") (unitCreationSpeed "+graph.map[9].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") )");
 		
-		a = graph.map[10].getAdjacentNodes()[0];
-		b = graph.map[10].getAdjacentNodes()[1];
-		c = graph.map[10].getAdjacentNodes()[2];
-		d = graph.map[10].getAdjacentNodes()[3];
-		e = graph.map[10].getAdjacentNodes()[4];
+		a = graph.map[10].getAvailableNodes()[0];
+		b = graph.map[10].getAvailableNodes()[1];
+		c = graph.map[10].getAvailableNodes()[2];
+		d = graph.map[10].getAvailableNodes()[3];
+		e = graph.map[10].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[10].get_id()+") (belongsTo "+graph.map[10].belongs()+") (squares "+graph.map[10].numberOfSquares()+") (circles "+graph.map[10].numberOfCircles()+") (triangles "+graph.map[10].numberOfTriangles()+") (unitCreationType "+graph.map[10].creationType()+") (unitCreationSpeed "+graph.map[10].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") )");
 		
-		a = graph.map[11].getAdjacentNodes()[0];
-		b = graph.map[11].getAdjacentNodes()[1];
-		c = graph.map[11].getAdjacentNodes()[2];
-		d = graph.map[11].getAdjacentNodes()[3];
-		e = graph.map[11].getAdjacentNodes()[4];
+		a = graph.map[11].getAvailableNodes()[0];
+		b = graph.map[11].getAvailableNodes()[1];
+		c = graph.map[11].getAvailableNodes()[2];
+		d = graph.map[11].getAvailableNodes()[3];
+		e = graph.map[11].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[11].get_id()+") (belongsTo "+graph.map[11].belongs()+") (squares "+graph.map[11].numberOfSquares()+") (circles "+graph.map[11].numberOfCircles()+") (triangles "+graph.map[11].numberOfTriangles()+") (unitCreationType "+graph.map[11].creationType()+") (unitCreationSpeed "+graph.map[11].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") ))");
 		
-		a = graph.map[12].getAdjacentNodes()[0];
-		b = graph.map[12].getAdjacentNodes()[1];
-		c = graph.map[12].getAdjacentNodes()[2];
-		d = graph.map[12].getAdjacentNodes()[3];
-		e = graph.map[12].getAdjacentNodes()[4];
+		a = graph.map[12].getAvailableNodes()[0];
+		b = graph.map[12].getAvailableNodes()[1];
+		c = graph.map[12].getAvailableNodes()[2];
+		d = graph.map[12].getAvailableNodes()[3];
+		e = graph.map[12].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[12].get_id()+") (belongsTo "+graph.map[12].belongs()+") (squares "+graph.map[12].numberOfSquares()+") (circles "+graph.map[12].numberOfCircles()+") (triangles "+graph.map[12].numberOfTriangles()+") (unitCreationType "+graph.map[12].creationType()+") (unitCreationSpeed "+graph.map[12].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") ))");
 		
-		a = graph.map[13].getAdjacentNodes()[0];
-		b = graph.map[13].getAdjacentNodes()[1];
-		c = graph.map[13].getAdjacentNodes()[2];
-		d = graph.map[13].getAdjacentNodes()[3];
-		e = graph.map[13].getAdjacentNodes()[4];
+		a = graph.map[13].getAvailableNodes()[0];
+		b = graph.map[13].getAvailableNodes()[1];
+		c = graph.map[13].getAvailableNodes()[2];
+		d = graph.map[13].getAvailableNodes()[3];
+		e = graph.map[13].getAvailableNodes()[4];
 		clips.assertString("(node (idNumber "+graph.map[13].get_id()+") (belongsTo "+graph.map[13].belongs()+") (squares "+graph.map[13].numberOfSquares()+") (circles "+graph.map[13].numberOfCircles()+") (triangles "+graph.map[13].numberOfTriangles()+") (unitCreationType "+graph.map[13].creationType()+") (unitCreationSpeed "+graph.map[13].speed()+") (availableAdjacentNodes "+a+" "+b+" "+c+" "+d+" "+e+") ))");
 
 		// Runs the agent, gets the response and puts it on the screen
