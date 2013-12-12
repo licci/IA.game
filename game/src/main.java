@@ -21,8 +21,8 @@ public class main {
 		
 		clipsPerformAction agents = new clipsPerformAction ("testAgent.clp","testAgent.clp");
 		
-		agents.performAction(1);
-		agents.performAction(2);
+		//agents.performAction(1);
+		//agents.performAction(2);
 		int tossResult = -1; 
 		
 		//Commented out so you can see how CLIPS works
