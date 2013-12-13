@@ -68,7 +68,14 @@ public class WorldUpdate {
 		 //Changing the timer
 		 roadTimer++;
 			if(roadTimer==1)
-			{   //Making a random road disappear. 
+			{   
+				
+				//FOR STATISTICS
+				Statistics.P1.addRoadBroken();
+				Statistics.P2.addRoadBroken();
+				//END FOR STATISTICS
+				
+				//Making a random road disappear. 
 				roadRand=(int) (Math.random() * 14);
 				switch(roadRand)
 				{

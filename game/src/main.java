@@ -37,18 +37,26 @@ public class main {
 			pause(200);
 			if (tossResult == 0)
 			{	
+				
+				System.out.println("---Player 1---------------");
+				Statistics.P1.addCoinWin();
 				agent1.performAction(1);
 				game.check();
 				if (game.getState()) break;
+				
+				System.out.println("---Player 2---------------");
 				agent2.performAction(2);
 				game.check();
 				if (game.getState()) break;
 			}
 			else if (tossResult == 1)
 			{	
+				System.out.println("---Player 2---------------");
+				Statistics.P2.addCoinWin();
 				agent2.performAction(2);
 				game.check();
 				if (game.getState()) break;
+				System.out.println("---Player 1---------------");
 				agent1.performAction(1);
 				game.check();
 				if (game.getState()) break;

@@ -40,6 +40,9 @@ public class agentActions {
 			graph.map[targetNode].setNumberOfSquares(graph.map[targetNode].numberOfSquares()+movingSquares);
 			graph.map[targetNode].setNumberOfCircles(graph.map[targetNode].numberOfCircles()+movingCircles);
 			graph.map[targetNode].setNumberOfTriangles(graph.map[targetNode].numberOfTriangles()+movingTriangles);
+			
+			if(playerId==1)Statistics.P1.addMove(movingSquares,movingCircles,movingTriangles); 
+			if(playerId==2)Statistics.P2.addMove(movingSquares,movingCircles,movingTriangles); 
 		}
 		else return false; //returns false if move impossible
 		
@@ -89,10 +92,20 @@ public class agentActions {
 			graph.map[startNode].setNumberOfCircles(graph.map[startNode].numberOfCircles()-attackingCircles);
 			graph.map[startNode].setNumberOfTriangles(graph.map[startNode].numberOfTriangles()-attackingTriangles);
 			
+ 			//FOR STATISTICS 
+			if(attackerId==1)Statistics.P1.addAttack(attackingSquares,attackingCircles,attackingTriangles); 
+			if(attackerId==2)Statistics.P2.addAttack(attackingSquares,attackingCircles,attackingTriangles); 
+			//END FOR STATISTICS
+			
 			//defenders
 			int defendingSquares = graph.map[targetNode].numberOfSquares();
 			int defendingCircles = graph.map[targetNode].numberOfCircles();
 			int defendingTriangles = graph.map[targetNode].numberOfTriangles();
+			
+			//FOR STATISTICS 
+			int startattackingSquares=attackingSquares, startattackingCircles=attackingCircles, startattackingTriangles=attackingTriangles;
+			int startdefendingSquares=defendingSquares, startdefendingCircles=defendingCircles, startdefendingTriangles=defendingTriangles;
+			//END FOR STATISTICS
 			
 			//special property of a node (decide whenever node is easier or harder to take)
 			int special = graph.map[targetNode].getSpecial();
@@ -142,7 +155,15 @@ public class agentActions {
 				}
 				
 				//check if fight has ended
-				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) return true;
+				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)){
+					
+					if(attackerId==1)Statistics.P1.addKilled((startdefendingSquares-defendingSquares),(startdefendingCircles-defendingCircles),(startdefendingTriangles-defendingTriangles));
+					if(attackerId==1)Statistics.P2.addKilled((startattackingSquares-attackingSquares),(startattackingCircles-attackingCircles),(startattackingTriangles-attackingTriangles));
+					if(attackerId==2)Statistics.P2.addKilled((startdefendingSquares-defendingSquares),(startdefendingCircles-defendingCircles),(startdefendingTriangles-defendingTriangles));
+					if(attackerId==2)Statistics.P1.addKilled((startattackingSquares-attackingSquares),(startattackingCircles-attackingCircles),(startattackingTriangles-attackingTriangles));
+					
+					return true;
+				}
 			
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				//2nd stage
@@ -185,7 +206,17 @@ public class agentActions {
 				}
 				
 				//check if fight has ended
-				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) return true;
+				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) {
+					
+					//FOR STATISTICS 215
+					if(attackerId==1)Statistics.P1.addKilled((startdefendingSquares-defendingSquares),(startdefendingCircles-defendingCircles),(startdefendingTriangles-defendingTriangles));
+					if(attackerId==1)Statistics.P2.addKilled((startattackingSquares-attackingSquares),(startattackingCircles-attackingCircles),(startattackingTriangles-attackingTriangles));
+					if(attackerId==2)Statistics.P2.addKilled((startdefendingSquares-defendingSquares),(startdefendingCircles-defendingCircles),(startdefendingTriangles-defendingTriangles));
+					if(attackerId==2)Statistics.P1.addKilled((startattackingSquares-attackingSquares),(startattackingCircles-attackingCircles),(startattackingTriangles-attackingTriangles));
+					//FOR STATISTICS END
+					
+					return true;
+				}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				//3rd stage - last step
 				if(defendingCircles !=0){
@@ -223,7 +254,11 @@ public class agentActions {
 						attackingTriangles = 0;
 					}
 				}
-			
+				
+				if(attackerId==1)Statistics.P1.addKilled((startdefendingSquares-defendingSquares),(startdefendingCircles-defendingCircles),(startdefendingTriangles-defendingTriangles));
+				if(attackerId==1)Statistics.P2.addKilled((startattackingSquares-attackingSquares),(startattackingCircles-attackingCircles),(startattackingTriangles-attackingTriangles));
+				if(attackerId==2)Statistics.P2.addKilled((startdefendingSquares-defendingSquares),(startdefendingCircles-defendingCircles),(startdefendingTriangles-defendingTriangles));
+				if(attackerId==2)Statistics.P1.addKilled((startattackingSquares-attackingSquares),(startattackingCircles-attackingCircles),(startattackingTriangles-attackingTriangles));
 		}
 		else {
 			//System.out.println("Attack impossible - node not in range!");
