@@ -19,7 +19,7 @@ public class main {
 		agent agent2 = new randomAgent();
 		WorldUpdate world = new WorldUpdate();
 		
-		clipsPerformAction agents = new clipsPerformAction ("testAgent.clp","testAgent.clp");
+		clipsPerformAction agents = new clipsPerformAction ("testAgent2.clp","testAgent3.clp");
 		
 		//agents.performAction(1);
 		//agents.performAction(2);
@@ -40,12 +40,12 @@ public class main {
 				
 				System.out.println("---Player 1---------------");
 				Statistics.P1.addCoinWin();
-				agent1.performAction(1);
+				agents.performAction(1);
 				game.check();
 				if (game.getState()) break;
 				
 				System.out.println("---Player 2---------------");
-				agent2.performAction(2);
+				agents.performAction(2);
 				game.check();
 				if (game.getState()) break;
 			}
@@ -53,17 +53,17 @@ public class main {
 			{	
 				System.out.println("---Player 2---------------");
 				Statistics.P2.addCoinWin();
-				agent2.performAction(2);
+				agents.performAction(2);
 				game.check();
 				if (game.getState()) break;
 				System.out.println("---Player 1---------------");
-				agent1.performAction(1);
+				agents.performAction(1);
 				game.check();
 				if (game.getState()) break;
 			}
 			
 			world.Update();
-			game.check();
+			//game.check();
 		}
 		System.out.println("Game finished in round "+ turnCount);
 		
