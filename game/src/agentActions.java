@@ -255,10 +255,17 @@ public class agentActions {
 					}
 				}
 				
-				if(attackerId==1)Statistics.P1.addKilled((startdefendingSquares-defendingSquares),(startdefendingCircles-defendingCircles),(startdefendingTriangles-defendingTriangles));
-				if(attackerId==1)Statistics.P2.addKilled((startattackingSquares-attackingSquares),(startattackingCircles-attackingCircles),(startattackingTriangles-attackingTriangles));
-				if(attackerId==2)Statistics.P2.addKilled((startdefendingSquares-defendingSquares),(startdefendingCircles-defendingCircles),(startdefendingTriangles-defendingTriangles));
-				if(attackerId==2)Statistics.P1.addKilled((startattackingSquares-attackingSquares),(startattackingCircles-attackingCircles),(startattackingTriangles-attackingTriangles));
+				if(battleEnded (attackerId,startNode,targetNode,attackingSquares,attackingCircles,attackingTriangles,defendingSquares,defendingCircles,defendingTriangles)) {
+					
+					//FOR STATISTICS 215
+					if(attackerId==1)Statistics.P1.addKilled((startdefendingSquares-defendingSquares),(startdefendingCircles-defendingCircles),(startdefendingTriangles-defendingTriangles));
+					if(attackerId==1)Statistics.P2.addKilled((startattackingSquares-attackingSquares),(startattackingCircles-attackingCircles),(startattackingTriangles-attackingTriangles));
+					if(attackerId==2)Statistics.P2.addKilled((startdefendingSquares-defendingSquares),(startdefendingCircles-defendingCircles),(startdefendingTriangles-defendingTriangles));
+					if(attackerId==2)Statistics.P1.addKilled((startattackingSquares-attackingSquares),(startattackingCircles-attackingCircles),(startattackingTriangles-attackingTriangles));
+					//FOR STATISTICS END
+					
+					return true;
+				}
 		}
 		else {
 			//System.out.println("Attack impossible - node not in range!");

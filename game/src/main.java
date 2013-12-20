@@ -19,13 +19,62 @@ public class main {
 		agent agent2 = new randomAgent();
 		WorldUpdate world = new WorldUpdate();
 		
-		clipsPerformAction agents = new clipsPerformAction ("testAgent2.clp","testAgent3.clp");
+		//agents
 		
-		//agents.performAction(1);
-		//agents.performAction(2);
+		//Agnieszka åwiderska
+		agneseAgent Agnieszka = new agneseAgent();
+		String agnieszka = "agnieszkaAgent.clp";
+		
+		//Dariusz Woüniak
+		agentDarek DarekL = new agentDarek(0, 13);
+		agentDarek DarekP = new agentDarek(13, 0);
+		
+		//String Darek = ""; 
+		
+		//Jakub Matusiak
+		agent Jakub = new JakubSearch();
+		String jakub = "JakubAgent.clp";
+		
+		//Joanna Olczyk
+		JoannaAgent Joanna = new JoannaAgent();
+		String joanna = "JoannaKBAgent.clp";
+		
+		//Maciej Kraúkiewicz
+		MaciejKAgent Maciej = new MaciejKAgent();
+		String maciej = "MaciejClipsAgent.clp";
+		
+		//Marcos Meirino
+		agent MarcosL = new SearchingAgentMarcosMeirino(1);
+		agent MarcosP = new SearchingAgentMarcosMeirino(2);
+		
+		//String marcos = "";
+		
+		//Pawe≥ Gonciarek
+		LaughingManSearch PaweL = new LaughingManSearch(1);
+		LaughingManSearch PaweP = new LaughingManSearch(2);
+		String pawel = "LaughingMan.clp";
+		
+		//LaughingManRandom randomL = new LaughingManRandom(1);
+		LaughingManRandom randomP = new LaughingManRandom(2);
+		
+		String laughingman = "LaughingMan.clp";
+		
+		//Sylwia Karbowiak
+		
+		agent Sylwia = new SylwiaAgent();
+		
+		String sylwia = "SylwiaKBAgent.clp";
+		
+		//Tomasz Pajπk
+		
+		
+		//end agents
+		clipsPerformAction agents = new clipsPerformAction(jakub,jakub);
+		
+
 		int tossResult = -1; 
 		
-		//Commented out so you can see how CLIPS works
+		int wait = 1000;
 		
 		while(!game.getState()) {
 			turnCount++;
@@ -37,29 +86,37 @@ public class main {
 			pause(200);
 			if (tossResult == 0)
 			{	
-				
+				pause(wait);
 				System.out.println("---Player 1---------------");
 				Statistics.P1.addCoinWin();
 				agents.performAction(1);
+
 				game.check();
-				if (game.getState()) break;
 				
+				if(game.getState()) break;
+				pause(wait);
 				System.out.println("---Player 2---------------");
 				agents.performAction(2);
+				
 				game.check();
-				if (game.getState()) break;
 			}
 			else if (tossResult == 1)
 			{	
+				pause(wait);
 				System.out.println("---Player 2---------------");
 				Statistics.P2.addCoinWin();
+				
 				agents.performAction(2);
+
+				
 				game.check();
-				if (game.getState()) break;
+				
+				if(game.getState()) break;
+				pause(wait);
 				System.out.println("---Player 1---------------");
 				agents.performAction(1);
+				
 				game.check();
-				if (game.getState()) break;
 			}
 			
 			world.Update();
